@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import * as TodoActions from '../../actions/todos';
 import Header from '../../components/Header';
 import MainSection from '../../components/MainSection';
-
-const style = require('./style.css');
+import * as style from './style.css';
 
 interface AppProps {
   todos: TodoItemData[];

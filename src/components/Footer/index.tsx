@@ -1,8 +1,7 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../../constants/filters';
-
-const style = require('./style.css');
+import * as style from './style.css';
 
 const FILTER_TITLES = {
   [SHOW_ALL]: 'All',

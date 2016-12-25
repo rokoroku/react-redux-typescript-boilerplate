@@ -4,8 +4,7 @@ import TodoItem from '../TodoItem';
 import Footer from '../Footer';
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../../constants/filters';
 import { connect } from 'react-redux';
-
-const style = require('./style.css');
+import * as style from './style.css';
 
 const TODO_FILTERS = {
   [SHOW_ALL]: () => true,

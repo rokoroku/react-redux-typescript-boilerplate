@@ -2,8 +2,7 @@ import * as React from 'react';
 import * as classNames from 'classnames';
 import TodoTextInput from '../TodoTextInput';
 import { applyMiddleware } from 'redux';
-
-const style = require('./style.css');
+import * as style from './style.css';
 
 interface TodoItemProps {
   todo: TodoItemData;

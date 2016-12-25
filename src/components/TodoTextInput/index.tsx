@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
-
-const style = require('./style.css');
+import * as style from './style.css';
 
 interface TodoTextInputProps {
   text?: string;
