@@ -13,7 +13,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
   context: sourcePath,
   entry: {
-    app: './index.tsx',
+    main: './index.tsx',
     vendor: [
       'react',
       'react-dom',
@@ -29,15 +29,15 @@ module.exports = {
   },
   target: 'web',
   resolve: {
-    // Add '.ts' and '.tsx' as resolvable extensions.
     extensions: ['.js', '.ts', '.tsx'],
-    // Replace react with preact for performance and size
-    alias: {
-      // FIXME: temporal workaround for preact-compat issues
-      // https://github.com/developit/preact-compat/issues/192#issuecomment-262187972
-      'react': isProduction ? 'preact-compat/dist/preact-compat' : 'react',
-      'react-dom': isProduction ? 'preact-compat/dist/preact-compat' : 'react-dom'
-    },
+    // Fix webpack's default behavior to not load packages with jsnext:main module
+    // https://github.com/Microsoft/TypeScript/issues/11677 
+    mainFields: ['main'],
+    // Replace react with preact in production
+    alias: isProduction ? {
+      'react': 'preact-compat',
+      'react-dom': 'preact-compat'
+    } : undefined
   },
   module: {
     loaders: [
