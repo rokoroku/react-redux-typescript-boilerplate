@@ -46,7 +46,7 @@ $ npm run build
 ## Note
 
 - Since webpack 2 is still in beta, related plugins may be unstable for now.
-- This boilerplate doesn't contain any testing frameworks.
+- This boilerplate doesn't contain any testing frameworks. Use something that suits your taste.
 
 # License
 
