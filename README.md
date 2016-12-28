@@ -10,7 +10,6 @@ A react-redux-webpack-typescript boilerplate based on TJ's [frontend-boilerplate
 - [x] [React Router](https://github.com/ReactTraining/react-router)
 - [x] [React Router Redux](https://github.com/reactjs/react-router-redux)
 - [x] [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
-- [x] [Preact](https://github.com/developit/preact/)
 - [x] [TodoMVC example](http://todomvc.com)
 
 ### Build tools

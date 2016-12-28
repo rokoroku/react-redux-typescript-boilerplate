@@ -32,12 +32,7 @@ module.exports = {
     extensions: ['.js', '.ts', '.tsx'],
     // Fix webpack's default behavior to not load packages with jsnext:main module
     // https://github.com/Microsoft/TypeScript/issues/11677 
-    mainFields: ['main'],
-    // Replace react with preact in production
-    alias: isProduction ? {
-      'react': 'preact-compat',
-      'react-dom': 'preact-compat'
-    } : undefined
+    mainFields: ['main']
   },
   module: {
     loaders: [

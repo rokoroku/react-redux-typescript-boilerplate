@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { RootState } from '../../reducers';
 import * as TodoActions from '../../actions/todos';
 import Header from '../../components/Header';
 import MainSection from '../../components/MainSection';
@@ -28,7 +29,7 @@ class App extends React.Component<AppProps, AppState>{
   }
 }
 
-function mapStateToProps(state: any) {
+function mapStateToProps(state: RootState) {
   return {
     todos: state.todos
   };
