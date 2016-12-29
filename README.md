@@ -1,15 +1,15 @@
-# Frontend Boilerplate with React & TypeScript
+# Frontend Boilerplate with React, Redux & TypeScript
 
 A react-redux-webpack-typescript boilerplate based on TJ's [frontend-boilerplate](https://github.com/tj/frontend-boilerplate).
 
-See also: [typescript-react-mobx-boilerplate](https://github.com/rokoroku/typescript-react-mobx-boilerplate)
+See also: [react-mobx-typescript-boilerplate](https://github.com/rokoroku/react-mobx-typescript-boilerplate)
 
 ## Contains
 
 - [x] [Typescript](https://www.typescriptlang.org/) 2.1.4
 - [x] [React](https://facebook.github.io/react/) 15.4.1
 - [x] [Redux](https://github.com/reactjs/redux)
-- [x] [React Router](https://github.com/ReactTraining/react-router)
+- [x] [React Router](https://github.com/ReactTraining/react-router) 3.0.0
 - [x] [React Router Redux](https://github.com/reactjs/react-router-redux)
 - [x] [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
 - [x] [TodoMVC example](http://todomvc.com)
