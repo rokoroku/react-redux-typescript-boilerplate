@@ -39,10 +39,12 @@ module.exports = {
       // .ts, .tsx
       {
         test: /\.tsx?$/,
-        loader: [
-          'react-hot-loader',
-          'awesome-typescript-loader'
-        ],
+        loader: isProduction
+          ? 'awesome-typescript-loader?module=es6'
+          : [
+            'react-hot-loader',
+            'awesome-typescript-loader'
+          ]
       },
       // css 
       {
@@ -105,4 +107,10 @@ module.exports = {
       warnings: false
     },
   },
+  node: {
+    // workaround for webpack-dev-server issue 
+    // https://github.com/webpack/webpack-dev-server/issues/60#issuecomment-103411179
+    fs: 'empty',
+    net: 'empty'
+  }
 };
