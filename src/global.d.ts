@@ -11,8 +11,8 @@ interface RequireInterface {
   (module: string): any;
   ensure?(module: string): any;
 }
-declare var module: any;
-declare var require: RequireInterface;
+// declare var module: any;
+// declare var require: RequireInterface;
 
 // for redux devtools extension
 declare interface Window {
