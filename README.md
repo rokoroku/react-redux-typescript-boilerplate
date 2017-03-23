@@ -6,11 +6,10 @@ See also: [react-mobx-typescript-boilerplate](https://github.com/rokoroku/react-
 
 ## Contains
 
-- [x] [Typescript](https://www.typescriptlang.org/) 2.1.5
-- [x] [React](https://facebook.github.io/react/) 15.4.2
-- [x] [Redux](https://github.com/reactjs/redux) 3.6.0
-- [x] [React Router](https://github.com/ReactTraining/react-router) 3.0.1
-- [x] [React Router Redux](https://github.com/reactjs/react-router-redux)
+- [x] [Typescript](https://www.typescriptlang.org/) 2.2
+- [x] [React](https://facebook.github.io/react/) 15.4
+- [x] [Redux](https://github.com/reactjs/redux) 3.6
+- [x] [React Router](https://github.com/ReactTraining/react-router) 4.0
 - [x] [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
 - [x] [TodoMVC example](http://todomvc.com)
 
@@ -48,7 +47,7 @@ $ npm run build
 
 ## Note
 
-- Since webpack 2 is still in beta, related dependencies can occur ``UNMET PEER DEPENDENCY`` errors.  
+- Since webpack 2 is still in new, related dependencies can occur ``UNMET PEER DEPENDENCY`` errors.  
 To avoid error, use **npm >=3.0.0**
 - This boilerplate doesn't contain any testing frameworks. Use something that suits your taste.  
 (such as [Mocha](https://github.com/mochajs/mocha), [Jasmine](https://github.com/jasmine/jasmine), or [Jest](https://github.com/facebook/jest))
