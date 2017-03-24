@@ -32,7 +32,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
     // Fix webpack's default behavior to not load packages with jsnext:main module
-    // https://github.com/Microsoft/TypeScript/issues/11677 
+    // https://github.com/Microsoft/TypeScript/issues/11677
     mainFields: ['main']
   },
   module: {
@@ -40,19 +40,19 @@ module.exports = {
       // .ts, .tsx
       {
         test: /\.tsx?$/,
-        loader: isProduction
+        use: isProduction
           ? 'awesome-typescript-loader?module=es6'
           : [
             'react-hot-loader',
             'awesome-typescript-loader'
           ]
       },
-      // css 
+      // css
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: [
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
             {
               loader: 'css-loader',
               query: {
@@ -68,10 +68,10 @@ module.exports = {
           ]
         })
       },
-      // static assets 
-      { test: /\.html$/, loader: 'html-loader' },
-      { test: /\.png$/, loader: 'url-loader?limit=10000' },
-      { test: /\.jpg$/, loader: 'file-loader' },
+      // static assets
+      { test: /\.html$/, use: 'html-loader' },
+      { test: /\.png$/, use: 'url-loader?limit=10000' },
+      { test: /\.jpg$/, use: 'file-loader' },
     ],
   },
   plugins: [
@@ -109,7 +109,7 @@ module.exports = {
     },
   },
   node: {
-    // workaround for webpack-dev-server issue 
+    // workaround for webpack-dev-server issue
     // https://github.com/webpack/webpack-dev-server/issues/60#issuecomment-103411179
     fs: 'empty',
     net: 'empty'

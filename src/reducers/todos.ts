@@ -24,7 +24,7 @@ export default handleActions<TodoStoreState, TodoItemData>({
     return state.map(todo => {
       return todo.id === action.payload.id
         ? { ...todo, text: action.payload.text }
-        : todo
+        : todo;
     });
   },
 
@@ -32,17 +32,17 @@ export default handleActions<TodoStoreState, TodoItemData>({
     return state.map(todo => {
       return todo.id === action.payload
         ? { ...todo, completed: !todo.completed }
-        : todo
+        : todo;
     });
   },
 
   [Actions.COMPLETE_ALL]: (state, action) => {
-    const areAllMarked = state.every(todo => todo.completed)
+    const areAllMarked = state.every(todo => todo.completed);
     return state.map(todo => {
       return {
         ...todo,
         completed: !areAllMarked
-      }
+      };
     });
   },
 
