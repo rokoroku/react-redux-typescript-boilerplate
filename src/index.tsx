@@ -3,9 +3,8 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, Switch } from 'react-router';
 import { createBrowserHistory } from 'history';
-
-import App from './containers/App';
-import configureStore from './store';
+import { configureStore } from './store';
+import { App } from './containers/App';
 
 const store = configureStore();
 const history = createBrowserHistory();

@@ -2,21 +2,23 @@ import * as React from 'react';
 import * as classNames from 'classnames';
 import * as style from './style.css';
 
-interface TodoTextInputProps {
-  text?: string;
-  placeholder?: string;
-  newTodo?: boolean;
-  editing?: boolean;
-  onSave: (text: string) => any;
-};
+export namespace TodoTextInput {
+  export interface Props {
+    text?: string;
+    placeholder?: string;
+    newTodo?: boolean;
+    editing?: boolean;
+    onSave: (text: string) => any;
+  }
 
-interface TodoTextInputState {
-  text: string;
-};
+  export interface State {
+    text: string;
+  }
+}
 
-class TodoTextInput extends React.Component<TodoTextInputProps, TodoTextInputState> {
+export class TodoTextInput extends React.Component<TodoTextInput.Props, TodoTextInput.State> {
 
-  constructor(props?: TodoTextInputProps, context?: any) {
+  constructor(props?: TodoTextInput.Props, context?: any) {
     super(props, context);
     this.state = {
       text: this.props.text || ''
@@ -65,5 +67,3 @@ class TodoTextInput extends React.Component<TodoTextInputProps, TodoTextInputSta
     );
   }
 }
-
-export default TodoTextInput;

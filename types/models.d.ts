@@ -1,4 +1,5 @@
 /** TodoMVC model definitions **/
+
 declare interface TodoItemData {
   id?: TodoItemId;
   text?: string;

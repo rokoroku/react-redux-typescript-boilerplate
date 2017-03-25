@@ -1,17 +1,19 @@
 import * as React from 'react';
-import TodoTextInput from '../TodoTextInput';
+import { TodoTextInput } from '../TodoTextInput';
 
-interface HeaderProps {
-  addTodo: (todo: TodoItemData) => any;
+export namespace Header {
+  export interface Props {
+    addTodo: (todo: TodoItemData) => any;
+  }
+
+  export interface State {
+    /* empty */
+  }
 }
 
-interface HeaderState {
-  /* empty */
-}
+export class Header extends React.Component<Header.Props, Header.State> {
 
-class Header extends React.Component<HeaderProps, HeaderState> {
-
-  constructor(props?: HeaderProps, context?: any) {
+  constructor(props?: Header.Props, context?: any) {
     super(props, context);
     this.handleSave = this.handleSave.bind(this);
   }
@@ -34,5 +36,3 @@ class Header extends React.Component<HeaderProps, HeaderState> {
     );
   }
 }
-
-export default Header;

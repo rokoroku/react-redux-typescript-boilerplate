@@ -1,31 +1,29 @@
 import * as React from 'react';
-import * as classNames from 'classnames';
-import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from '../../constants/filters';
 import * as style from './style.css';
+import * as classNames from 'classnames';
+import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED, FILTER_TYPES } from '../../constants/filters';
 
-const FILTER_TITLES = {
+export const FILTER_TITLES = {
   [SHOW_ALL]: 'All',
   [SHOW_ACTIVE]: 'Active',
   [SHOW_COMPLETED]: 'Completed'
 };
 
-const FILTER_TYPES = [
-  SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED
-];
+export namespace Footer {
+  export interface Props {
+    filter: TodoFilterType;
+    activeCount: number;
+    completedCount: number;
+    onShow: (filter: TodoFilterType) => any;
+    onClearCompleted: () => any;
+  }
 
-interface FooterProps {
-  filter: TodoFilterType;
-  activeCount: number;
-  completedCount: number;
-  onShow: (filter: TodoFilterType) => any;
-  onClearCompleted: () => any;
-};
-
-interface FooterState {
-  /* empty */
+  export interface State {
+    /* empty */
+  }
 }
 
-class Footer extends React.Component<FooterProps, FooterState> {
+export class Footer extends React.Component<Footer.Props, Footer.State> {
 
   renderTodoCount() {
     const { activeCount } = this.props;
@@ -39,14 +37,13 @@ class Footer extends React.Component<FooterProps, FooterState> {
   }
 
   renderFilterLink(filter: TodoFilterType) {
-    const title = FILTER_TITLES[filter];
     const { filter: selectedFilter, onShow } = this.props;
 
     return (
       <a className={classNames({ [style.selected]: filter === selectedFilter })}
         style={{ cursor: 'pointer' }}
         onClick={() => onShow(filter)}>
-        {title}
+        {FILTER_TITLES[filter]}
       </a>
     );
   }
@@ -78,5 +75,3 @@ class Footer extends React.Component<FooterProps, FooterState> {
     );
   }
 }
-
-export default Footer;

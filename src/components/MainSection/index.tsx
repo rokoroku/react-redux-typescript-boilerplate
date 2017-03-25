@@ -1,10 +1,10 @@
 import * as React from 'react';
 import * as TodoActions from '../../actions/todos';
-import TodoItem from '../TodoItem';
-import Footer from '../Footer';
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../../constants/filters';
-import { connect } from 'react-redux';
 import * as style from './style.css';
+import { connect } from 'react-redux';
+import { Footer } from '../Footer';
+import { TodoItem } from '../TodoItem';
+import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../../constants/filters';
 
 const TODO_FILTERS = {
   [SHOW_ALL]: () => true,
@@ -12,18 +12,20 @@ const TODO_FILTERS = {
   [SHOW_COMPLETED]: todo => todo.completed
 };
 
-interface MainSectionProps {
-  todos: TodoItemData[];
-  actions: typeof TodoActions;
-};
+export namespace MainSection {
+  export interface Props {
+    todos: TodoItemData[];
+    actions: typeof TodoActions;
+  }
 
-interface MainSectionState {
-  filter: TodoFilterType;
-};
+  export interface State {
+    filter: TodoFilterType;
+  }
+}
 
-class MainSection extends React.Component<MainSectionProps, MainSectionState> {
+export class MainSection extends React.Component<MainSection.Props, MainSection.State> {
 
-  constructor(props?: MainSectionProps, context?: any) {
+  constructor(props?: MainSection.Props, context?: any) {
     super(props, context);
     this.state = { filter: SHOW_ALL };
     this.handleClearCompleted = this.handleClearCompleted.bind(this);
@@ -92,5 +94,3 @@ class MainSection extends React.Component<MainSectionProps, MainSectionState> {
     );
   }
 }
-
-export default MainSection;

@@ -1,22 +1,26 @@
 import * as React from 'react';
+import * as TodoActions from '../../actions/todos';
+import * as style from './style.css';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router';
 import { RootState } from '../../reducers';
-import * as TodoActions from '../../actions/todos';
-import Header from '../../components/Header';
-import MainSection from '../../components/MainSection';
-import * as style from './style.css';
+import { Header, MainSection } from '../../components';
 
-interface AppProps {
-  todos: TodoItemData[];
-  actions: typeof TodoActions;
-};
+export namespace App {
+  export interface Props extends RouteComponentProps<void> {
+    todos: TodoItemData[];
+    actions: typeof TodoActions;
+  }
 
-interface AppState {
-  /* empty */
+  export interface State {
+    /* empty */
+  }
 }
 
-class App extends React.Component<AppProps, AppState>{
+@connect(mapStateToProps, mapDispatchToProps)
+export class App extends React.Component<App.Props, App.State> {
+
   render() {
     const { todos, actions, children } = this.props;
     return (
@@ -40,8 +44,3 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(TodoActions as any, dispatch)
   };
 }
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);

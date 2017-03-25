@@ -1,23 +1,25 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
-import TodoTextInput from '../TodoTextInput';
-import { applyMiddleware } from 'redux';
 import * as style from './style.css';
+import { TodoTextInput } from '../TodoTextInput';
+import { applyMiddleware } from 'redux';
 
-interface TodoItemProps {
-  todo: TodoItemData;
-  editTodo: (todo: TodoItemData) => any;
-  deleteTodo: (id: number) => any;
-  completeTodo: (id: number) => any;
-};
+export namespace TodoItem {
+  export interface Props {
+    todo: TodoItemData;
+    editTodo: (todo: TodoItemData) => any;
+    deleteTodo: (id: number) => any;
+    completeTodo: (id: number) => any;
+  }
 
-interface TodoItemState {
-  editing: boolean;
-};
+  export interface State {
+    editing: boolean;
+  }
+}
 
-class TodoItem extends React.Component<TodoItemProps, TodoItemState> {
+export class TodoItem extends React.Component<TodoItem.Props, TodoItem.State> {
 
-  constructor(props?: TodoItemProps, context?: any) {
+  constructor(props?: TodoItem.Props, context?: any) {
     super(props, context);
     this.state = {
       editing: false
@@ -80,5 +82,3 @@ class TodoItem extends React.Component<TodoItemProps, TodoItemState> {
     );
   }
 }
-
-export default TodoItem;
