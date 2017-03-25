@@ -1,6 +1,10 @@
 # Frontend Boilerplate with React, Redux & TypeScript
 
-A react-redux-webpack-typescript boilerplate based on TJ's [frontend-boilerplate](https://github.com/tj/frontend-boilerplate).
+A bare minimum react-redux-webpack-typescript boilerplate with TodoMVC example.
+
+Note that this project does not include **Server-Side Rendering**,  **Testing Frameworks** and other stuffs that makes the package unnecessarily complicated.
+
+Ideal for creating React apps from the scratch.
 
 See also: [react-mobx-typescript-boilerplate](https://github.com/rokoroku/react-mobx-typescript-boilerplate)
 
@@ -15,7 +19,7 @@ See also: [react-mobx-typescript-boilerplate](https://github.com/rokoroku/react-
 
 ### Build tools
 
-- [x] [Webpack](https://webpack.github.io) 2.2.0
+- [x] [Webpack](https://webpack.github.io) 2.3
   - [x] [Tree Shaking](https://medium.com/@Rich_Harris/tree-shaking-versus-dead-code-elimination-d3765df85c80)
   - [x] [Webpack Dev Server](https://github.com/webpack/webpack-dev-server)
 - [x] [Awesome Typescript Loader](https://github.com/s-panferov/awesome-typescript-loader)
@@ -44,13 +48,6 @@ $ npm start
 ```
 $ npm run build
 ```
-
-## Note
-
-- Since webpack 2 is still in new, related dependencies can occur ``UNMET PEER DEPENDENCY`` errors.  
-To avoid error, use **npm >=3.0.0**
-- This boilerplate doesn't contain any testing frameworks. Use something that suits your taste.  
-(such as [Mocha](https://github.com/mochajs/mocha), [Jasmine](https://github.com/jasmine/jasmine), or [Jest](https://github.com/facebook/jest))
 
 # License
 
