@@ -86,7 +86,12 @@ export class MainSection extends React.Component<MainSection.Props, MainSection.
         {this.renderToggleAll(completedCount)}
         <ul className={style.normal}>
           {filteredTodos.map(todo =>
-            <TodoItem key={todo.id} todo={todo} {...actions} />
+            <TodoItem
+              key={todo.id}
+              todo={todo}
+              completeTodo={actions.completeTodo}
+              deleteTodo={actions.deleteTodo}
+              editTodo={actions.editTodo} />
           )}
         </ul>
         {this.renderFooter(completedCount)}
