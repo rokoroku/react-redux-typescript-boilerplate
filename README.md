@@ -10,10 +10,10 @@ See also: [react-mobx-typescript-boilerplate](https://github.com/rokoroku/react-
 
 ## Contains
 
-- [x] [Typescript](https://www.typescriptlang.org/) 2.2
-- [x] [React](https://facebook.github.io/react/) 15.4
+- [x] [Typescript](https://www.typescriptlang.org/) 2.3
+- [x] [React](https://facebook.github.io/react/) 15.5
 - [x] [Redux](https://github.com/reactjs/redux) 3.6
-- [x] [React Router](https://github.com/ReactTraining/react-router) 4.0
+- [x] [React Router](https://github.com/ReactTraining/react-router) 4.1
 - [x] [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
 - [x] [TodoMVC example](http://todomvc.com)
 
