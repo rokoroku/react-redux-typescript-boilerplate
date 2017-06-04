@@ -62,7 +62,16 @@ module.exports = {
               }
             },
             {
-              loader: 'postcss-loader'
+              loader: 'postcss-loader',
+              options: {
+                plugins: [
+                  require('postcss-import')({ addDependencyTo: webpack }),
+                  require('postcss-url')(),
+                  require('postcss-cssnext')(),
+                  require('postcss-reporter')(),
+                  require('postcss-browser-reporter')({ disabled: isProduction }),
+                ]
+              }
             }
           ]
         })
@@ -74,18 +83,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        context: sourcePath,
-        postcss: [
-          require('postcss-import')({ addDependencyTo: webpack }),
-          require('postcss-url')(),
-          require('postcss-cssnext')(),
-          require('postcss-reporter')(),
-          require('postcss-browser-reporter')({ disabled: isProduction }),
-        ]
-      }
-    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: 'vendor.bundle.js',
