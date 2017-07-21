@@ -64,6 +64,7 @@ module.exports = {
             {
               loader: 'postcss-loader',
               options: {
+                ident: 'postcss',
                 plugins: [
                   require('postcss-import')({ addDependencyTo: webpack }),
                   require('postcss-url')(),
