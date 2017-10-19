@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, Store } from 'redux';
+import { composeWithDevTools } from "redux-devtools-extension";
 import { logger } from '../middleware';
 import rootReducer, { RootState } from '../reducers';
-import {composeWithDevTools} from "redux-devtools-extension";
 
 export function configureStore(initialState?: RootState) {
   let middleware = applyMiddleware(logger);
