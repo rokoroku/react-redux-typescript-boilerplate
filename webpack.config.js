@@ -1,14 +1,11 @@
-var webpack = require('webpack');
-var path = require('path');
+const Webpack = require('webpack');
+const Path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-// variables
-var isProduction = process.argv.indexOf('-p') >= 0;
-var sourcePath = path.join(__dirname, './src');
-var outPath = path.join(__dirname, './dist');
-
-// plugins
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const isProduction = process.argv.indexOf('-p') >= 0;
+const outPath = Path.join(__dirname, './dist');
+const sourcePath = Path.join(__dirname, './src');
 
 module.exports = {
   context: sourcePath,
@@ -66,7 +63,7 @@ module.exports = {
               options: {
                 ident: 'postcss',
                 plugins: [
-                  require('postcss-import')({ addDependencyTo: webpack }),
+                  require('postcss-import')({ addDependencyTo: Webpack }),
                   require('postcss-url')(),
                   require('postcss-cssnext')(),
                   require('postcss-reporter')(),
@@ -84,12 +81,15 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
+    new Webpack.DefinePlugin({
+      'process.env.NODE_ENV': isProduction === true ? JSON.stringify('production') : JSON.stringify('development')
+    }),
+    new Webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: 'vendor.bundle.js',
       minChunks: Infinity
     }),
-    new webpack.optimize.AggressiveMergingPlugin(),
+    new Webpack.optimize.AggressiveMergingPlugin(),
     new ExtractTextPlugin({
       filename: 'styles.css',
       disable: !isProduction
