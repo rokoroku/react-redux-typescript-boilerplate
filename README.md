@@ -43,6 +43,18 @@ $ npm install
 $ npm start
 ```
 
+## Linting
+
+```
+$ npm run lint
+```
+
+## Formatting
+
+```
+$ npm run prettier
+```
+
 ## Build
 
 ```
