@@ -12,7 +12,6 @@ export namespace Header {
 }
 
 export class Header extends React.Component<Header.Props, Header.State> {
-
   constructor(props?: Header.Props, context?: any) {
     super(props, context);
     this.handleSave = this.handleSave.bind(this);

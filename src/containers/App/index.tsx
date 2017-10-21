@@ -20,7 +20,6 @@ export namespace App {
 
 @connect(mapStateToProps, mapDispatchToProps)
 export class App extends React.Component<App.Props, App.State> {
-
   render() {
     const { todos, actions, children } = this.props;
     return (

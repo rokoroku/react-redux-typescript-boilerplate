@@ -23,8 +23,10 @@ export namespace MainSection {
   }
 }
 
-export class MainSection extends React.Component<MainSection.Props, MainSection.State> {
-
+export class MainSection extends React.Component<
+  MainSection.Props,
+  MainSection.State
+> {
   constructor(props?: MainSection.Props, context?: any) {
     super(props, context);
     this.state = { filter: SHOW_ALL };
@@ -88,7 +90,7 @@ export class MainSection extends React.Component<MainSection.Props, MainSection.
       <section className={style.main}>
         {this.renderToggleAll(completedCount)}
         <ul className={style.normal}>
-          {filteredTodos.map(todo =>
+          {filteredTodos.map(todo => (
             <TodoItem
               key={todo.id}
               todo={todo}
@@ -96,7 +98,7 @@ export class MainSection extends React.Component<MainSection.Props, MainSection.
               deleteTodo={actions.deleteTodo}
               editTodo={actions.editTodo}
             />
-          )}
+          ))}
         </ul>
         {this.renderFooter(completedCount)}
       </section>

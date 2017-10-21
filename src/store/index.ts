@@ -10,7 +10,9 @@ export function configureStore(initialState?: RootState) {
     middleware = composeWithDevTools(middleware);
   }
 
-  const store = createStore(rootReducer, initialState, middleware) as Store<RootState>;
+  const store = createStore(rootReducer, initialState, middleware) as Store<
+    RootState
+  >;
 
   if (module.hot) {
     module.hot.accept('../reducers', () => {
