@@ -51,7 +51,8 @@ export class MainSection extends React.Component<MainSection.Props, MainSection.
           className={style.toggleAll}
           type="checkbox"
           checked={completedCount === todos.length}
-          onChange={actions.completeAll} />
+          onChange={actions.completeAll}
+        />
       );
     }
   }
@@ -63,11 +64,13 @@ export class MainSection extends React.Component<MainSection.Props, MainSection.
 
     if (todos.length) {
       return (
-        <Footer filter={filter}
+        <Footer
+          filter={filter}
           activeCount={activeCount}
           completedCount={completedCount}
           onClearCompleted={this.handleClearCompleted}
-          onShow={this.handleShow} />
+          onShow={this.handleShow}
+        />
       );
     }
   }
@@ -91,7 +94,8 @@ export class MainSection extends React.Component<MainSection.Props, MainSection.
               todo={todo}
               completeTodo={actions.completeTodo}
               deleteTodo={actions.deleteTodo}
-              editTodo={actions.editTodo} />
+              editTodo={actions.editTodo}
+            />
           )}
         </ul>
         {this.renderFooter(completedCount)}

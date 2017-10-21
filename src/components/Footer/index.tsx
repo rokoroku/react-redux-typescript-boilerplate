@@ -40,9 +40,11 @@ export class Footer extends React.Component<Footer.Props, Footer.State> {
     const { filter: selectedFilter, onShow } = this.props;
 
     return (
-      <a className={classNames({ [style.selected]: filter === selectedFilter })}
+      <a
+        className={classNames({ [style.selected]: filter === selectedFilter })}
         style={{ cursor: 'pointer' }}
-        onClick={() => onShow(filter)}>
+        onClick={() => onShow(filter)}
+      >
         {FILTER_TITLES[filter]}
       </a>
     );

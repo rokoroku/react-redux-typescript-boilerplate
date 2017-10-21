@@ -47,17 +47,21 @@ export class TodoItem extends React.Component<TodoItem.Props, TodoItem.State> {
     let element;
     if (this.state.editing) {
       element = (
-        <TodoTextInput text={todo.text}
+        <TodoTextInput
+          text={todo.text}
           editing={this.state.editing}
-          onSave={(text) => this.handleSave(todo.id, text)} />
+          onSave={(text) => this.handleSave(todo.id, text)}
+        />
       );
     } else {
       element = (
         <div className={style.view}>
-          <input className={style.toggle}
+          <input
+            className={style.toggle}
             type="checkbox"
             checked={todo.completed}
-            onChange={() => completeTodo(todo.id)} />
+            onChange={() => completeTodo(todo.id)}
+          />
 
           <label onDoubleClick={this.handleDoubleClick}>
             {todo.text}
