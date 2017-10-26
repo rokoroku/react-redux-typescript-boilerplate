@@ -12,7 +12,6 @@ export namespace Header {
 }
 
 export class Header extends React.Component<Header.Props, Header.State> {
-
   constructor(props?: Header.Props, context?: any) {
     super(props, context);
     this.handleSave = this.handleSave.bind(this);
@@ -31,7 +30,8 @@ export class Header extends React.Component<Header.Props, Header.State> {
         <TodoTextInput
           newTodo
           onSave={this.handleSave}
-          placeholder="What needs to be done?" />
+          placeholder="What needs to be done?"
+        />
       </header>
     );
   }

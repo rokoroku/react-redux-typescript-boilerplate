@@ -18,7 +18,6 @@ export namespace TodoItem {
 }
 
 export class TodoItem extends React.Component<TodoItem.Props, TodoItem.State> {
-
   constructor(props?: TodoItem.Props, context?: any) {
     super(props, context);
     this.state = {
@@ -47,23 +46,28 @@ export class TodoItem extends React.Component<TodoItem.Props, TodoItem.State> {
     let element;
     if (this.state.editing) {
       element = (
-        <TodoTextInput text={todo.text}
+        <TodoTextInput
+          text={todo.text}
           editing={this.state.editing}
-          onSave={(text) => this.handleSave(todo.id, text)} />
+          onSave={text => this.handleSave(todo.id, text)}
+        />
       );
     } else {
       element = (
         <div className={style.view}>
-          <input className={style.toggle}
+          <input
+            className={style.toggle}
             type="checkbox"
             checked={todo.completed}
-            onChange={() => completeTodo(todo.id)} />
+            onChange={() => completeTodo(todo.id)}
+          />
 
-          <label onDoubleClick={this.handleDoubleClick}>
-            {todo.text}
-          </label>
+          <label onDoubleClick={this.handleDoubleClick}>{todo.text}</label>
 
-          <button className={style.destroy} onClick={() => deleteTodo(todo.id)} />
+          <button
+            className={style.destroy}
+            onClick={() => deleteTodo(todo.id)}
+          />
         </div>
       );
     }
@@ -75,10 +79,6 @@ export class TodoItem extends React.Component<TodoItem.Props, TodoItem.State> {
       [style.normal]: !this.state.editing
     });
 
-    return (
-      <li className={classes}>
-        {element}
-      </li>
-    );
+    return <li className={classes}>{element}</li>;
   }
 }

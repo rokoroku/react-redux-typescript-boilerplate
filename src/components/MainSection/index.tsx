@@ -23,8 +23,10 @@ export namespace MainSection {
   }
 }
 
-export class MainSection extends React.Component<MainSection.Props, MainSection.State> {
-
+export class MainSection extends React.Component<
+  MainSection.Props,
+  MainSection.State
+> {
   constructor(props?: MainSection.Props, context?: any) {
     super(props, context);
     this.state = { filter: SHOW_ALL };
@@ -51,7 +53,8 @@ export class MainSection extends React.Component<MainSection.Props, MainSection.
           className={style.toggleAll}
           type="checkbox"
           checked={completedCount === todos.length}
-          onChange={actions.completeAll} />
+          onChange={actions.completeAll}
+        />
       );
     }
   }
@@ -63,11 +66,13 @@ export class MainSection extends React.Component<MainSection.Props, MainSection.
 
     if (todos.length) {
       return (
-        <Footer filter={filter}
+        <Footer
+          filter={filter}
           activeCount={activeCount}
           completedCount={completedCount}
           onClearCompleted={this.handleClearCompleted}
-          onShow={this.handleShow} />
+          onShow={this.handleShow}
+        />
       );
     }
   }
@@ -85,14 +90,15 @@ export class MainSection extends React.Component<MainSection.Props, MainSection.
       <section className={style.main}>
         {this.renderToggleAll(completedCount)}
         <ul className={style.normal}>
-          {filteredTodos.map(todo =>
+          {filteredTodos.map(todo => (
             <TodoItem
               key={todo.id}
               todo={todo}
               completeTodo={actions.completeTodo}
               deleteTodo={actions.deleteTodo}
-              editTodo={actions.editTodo} />
-          )}
+              editTodo={actions.editTodo}
+            />
+          ))}
         </ul>
         {this.renderFooter(completedCount)}
       </section>

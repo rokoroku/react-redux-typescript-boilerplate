@@ -1,0 +1,14 @@
+{
+  "defaultSeverity": "error",
+  "exclude": ["node_modules", "dist"],
+  "extends": ["tslint-react", "tslint-config-prettier"],
+  "jsRules": {},
+  "rules": {
+    "jsx-boolean-value": false,
+    "jsx-no-lambda": false,
+    "jsx-no-multiline-js": false,
+    "prettier": true,
+    "quotemark": [true, "single", "jsx-double"]
+  },
+  "rulesDirectory": ["tslint-plugin-prettier"]
+}
