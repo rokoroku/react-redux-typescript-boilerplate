@@ -8,6 +8,9 @@ Ideal for creating React apps from the scratch.
 
 See also: [react-mobx-typescript-boilerplate](https://github.com/rokoroku/react-mobx-typescript-boilerplate)
 
+### Branches
+- [`feature-tslint`](https://github.com/rokoroku/react-redux-typescript-boilerplate/tree/feature/tslint): yarn + tslint + prettier integrated branch.
+
 ## Contains
 
 - [x] [Typescript](https://www.typescriptlang.org/) 2.5
