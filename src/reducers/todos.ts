@@ -10,7 +10,7 @@ const initialState: TodoStoreState = [{
 export default handleActions<TodoStoreState, TodoItemData>({
   [Actions.ADD_TODO]: (state, action) => {
     return [{
-      id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
+      id: state.reduce((maxId, todo) => Math.max(todo.id || 0, maxId), -1) + 1,
       completed: false,
       ...action.payload,
     }, ...state];
@@ -22,9 +22,13 @@ export default handleActions<TodoStoreState, TodoItemData>({
 
   [Actions.EDIT_TODO]: (state, action) => {
     return state.map(todo => {
-      return todo.id === action.payload.id
-        ? { ...todo, text: action.payload.text }
-        : todo;
+      if (!todo || !action || !action.payload) {
+        return todo;
+      } else {
+        return (todo.id || 0) === action.payload.id
+          ? { ...todo, text: action.payload.text }
+          : todo;
+      }
     });
   },
 
@@ -37,7 +41,7 @@ export default handleActions<TodoStoreState, TodoItemData>({
   },
 
   [Actions.COMPLETE_ALL]: (state, action) => {
-    const areAllMarked = state.every(todo => todo.completed);
+    const areAllMarked = state.every(todo => todo.completed || false);
     return state.map(todo => {
       return {
         ...todo,

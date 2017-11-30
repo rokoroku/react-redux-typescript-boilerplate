@@ -17,10 +17,17 @@ export namespace TodoItem {
   }
 }
 
+const emptyProps: TodoItem.Props = {
+  todo: {},
+  editTodo: (_) => null,
+  deleteTodo: (_) => null,
+  completeTodo: (_) => null
+}
+
 export class TodoItem extends React.Component<TodoItem.Props, TodoItem.State> {
 
   constructor(props?: TodoItem.Props, context?: any) {
-    super(props, context);
+    super(props || emptyProps, context || {});
     this.state = {
       editing: false
     };
@@ -49,7 +56,7 @@ export class TodoItem extends React.Component<TodoItem.Props, TodoItem.State> {
       element = (
         <TodoTextInput text={todo.text}
           editing={this.state.editing}
-          onSave={(text) => this.handleSave(todo.id, text)} />
+          onSave={(text) => { if (todo.id) this.handleSave(todo.id, text) }} />
       );
     } else {
       element = (
@@ -57,13 +64,13 @@ export class TodoItem extends React.Component<TodoItem.Props, TodoItem.State> {
           <input className={style.toggle}
             type="checkbox"
             checked={todo.completed}
-            onChange={() => completeTodo(todo.id)} />
+            onChange={() => { if (todo.id) completeTodo(todo.id) }} />
 
           <label onDoubleClick={this.handleDoubleClick}>
             {todo.text}
           </label>
 
-          <button className={style.destroy} onClick={() => deleteTodo(todo.id)} />
+          <button className={style.destroy} onClick={() => { if (todo.id) deleteTodo(todo.id) }} />
         </div>
       );
     }

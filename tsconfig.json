@@ -11,7 +11,7 @@
     "noImplicitAny": false,
     "noImplicitReturns": false,
     "removeComments": true,
-    "strictNullChecks": false,
+    "strictNullChecks": true,
     "outDir": "build",
     "lib": [
       "es6",

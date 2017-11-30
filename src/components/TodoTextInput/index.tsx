@@ -16,10 +16,14 @@ export namespace TodoTextInput {
   }
 }
 
+const emptyProps: TodoTextInput.Props = {
+  onSave: (_) => null,
+}
+
 export class TodoTextInput extends React.Component<TodoTextInput.Props, TodoTextInput.State> {
 
   constructor(props?: TodoTextInput.Props, context?: any) {
-    super(props, context);
+    super(props || emptyProps, context || {});
     this.state = {
       text: this.props.text || ''
     };

@@ -23,17 +23,19 @@ export namespace MainSection {
   }
 }
 
+const emptyProps: MainSection.Props = { todos: [], actions: TodoActions }
+
 export class MainSection extends React.Component<MainSection.Props, MainSection.State> {
 
   constructor(props?: MainSection.Props, context?: any) {
-    super(props, context);
+    super(props || emptyProps, context || {});
     this.state = { filter: SHOW_ALL };
     this.handleClearCompleted = this.handleClearCompleted.bind(this);
     this.handleShow = this.handleShow.bind(this);
   }
 
   handleClearCompleted() {
-    const atLeastOneCompleted = this.props.todos.some(todo => todo.completed);
+    const atLeastOneCompleted = this.props.todos.some(todo => todo.completed || false);
     if (atLeastOneCompleted) {
       this.props.actions.clearCompleted();
     }
