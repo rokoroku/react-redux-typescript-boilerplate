@@ -3,13 +3,14 @@ import * as classNames from 'classnames';
 import * as style from './style.css';
 import { TodoTextInput } from '../TodoTextInput';
 import { applyMiddleware } from 'redux';
+import {Action} from "redux-actions";
 
 export namespace TodoItem {
   export interface Props {
     todo: TodoItemData;
-    editTodo: (todo: TodoItemData) => any;
-    deleteTodo: (id: number) => any;
-    completeTodo: (id: number) => any;
+    editTodo: (todo: TodoItemData) => Action<TodoItemData>;
+    deleteTodo: (id: number) => Action<number>;
+    completeTodo: (id: number) => Action<number>;
   }
 
   export interface State {
@@ -32,7 +33,7 @@ export class TodoItem extends React.Component<TodoItem.Props, TodoItem.State> {
     this.setState({ editing: true });
   }
 
-  handleSave(id: number, text: string) {
+  handleSave(id: number, text: string): void {
     if (text.length === 0) {
       this.props.deleteTodo(id);
     } else {
