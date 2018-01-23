@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { TodoTextInput } from '../TodoTextInput';
+import {Action} from 'redux-actions';
 
 export namespace Header {
   export interface Props {
-    addTodo: (todo: TodoItemData) => any;
+    addTodo: (todo: TodoItemData) => Action<TodoItemData>;
   }
 
   export interface State {

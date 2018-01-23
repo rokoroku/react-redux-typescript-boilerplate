@@ -8,7 +8,7 @@ export namespace TodoTextInput {
     placeholder?: string;
     newTodo?: boolean;
     editing?: boolean;
-    onSave: (text: string) => any;
+    onSave: (text: string) => void;
   }
 
   export interface State {
