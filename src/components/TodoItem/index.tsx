@@ -3,7 +3,7 @@ import * as classNames from 'classnames';
 import * as style from './style.css';
 import { TodoTextInput } from '../TodoTextInput';
 import { applyMiddleware } from 'redux';
-import {Action} from "redux-actions";
+import {Action} from 'redux-actions';
 
 export namespace TodoItem {
   export interface Props {
