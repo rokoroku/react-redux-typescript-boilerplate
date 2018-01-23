@@ -12,10 +12,12 @@ export namespace Header {
   }
 }
 
+const emptyProps: Header.Props = { addTodo: (_) => null }
+
 export class Header extends React.Component<Header.Props, Header.State> {
 
   constructor(props?: Header.Props, context?: any) {
-    super(props, context);
+    super(props || emptyProps, context || {});
     this.handleSave = this.handleSave.bind(this);
   }
 
