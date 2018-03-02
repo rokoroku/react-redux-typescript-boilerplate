@@ -1,7 +1,8 @@
 import { createStore, applyMiddleware, Store } from 'redux';
-import { composeWithDevTools } from "redux-devtools-extension";
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { logger } from '../middleware';
-import rootReducer, { RootState } from '../reducers';
+import { TodoItem } from '../components';
+import { RootState, rootReducer } from '../reducers';
 
 export function configureStore(initialState?: RootState) {
   let middleware = applyMiddleware(logger);
@@ -10,7 +11,7 @@ export function configureStore(initialState?: RootState) {
     middleware = composeWithDevTools(middleware);
   }
 
-  const store = createStore(rootReducer, initialState, middleware) as Store<RootState>;
+  const store = createStore(rootReducer as any, initialState, middleware) as Store<RootState>;
 
   if (module.hot) {
     module.hot.accept('../reducers', () => {

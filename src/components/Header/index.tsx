@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { TodoTextInput } from '../TodoTextInput';
-import {Action} from 'redux-actions';
+import { Action } from 'redux-actions';
+import { TodoModel } from '../../models';
+import { TodoActions } from '../../actions/todos';
 
 export namespace Header {
   export interface Props {
-    addTodo: (todo: TodoItemData) => Action<TodoItemData>;
+    addTodo: typeof TodoActions.addTodo;
   }
 
   export interface State {
@@ -12,12 +14,9 @@ export namespace Header {
   }
 }
 
-const emptyProps: Header.Props = { addTodo: (_) => null }
-
 export class Header extends React.Component<Header.Props, Header.State> {
-
-  constructor(props?: Header.Props, context?: any) {
-    super(props || emptyProps, context || {});
+  constructor(props: Header.Props, context?: any) {
+    super(props, context);
     this.handleSave = this.handleSave.bind(this);
   }
 
@@ -31,10 +30,7 @@ export class Header extends React.Component<Header.Props, Header.State> {
     return (
       <header>
         <h1>Todos</h1>
-        <TodoTextInput
-          newTodo
-          onSave={this.handleSave}
-          placeholder="What needs to be done?" />
+        <TodoTextInput newTodo onSave={this.handleSave} placeholder="What needs to be done?" />
       </header>
     );
   }

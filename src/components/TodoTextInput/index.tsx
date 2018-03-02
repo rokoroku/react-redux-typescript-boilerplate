@@ -16,17 +16,10 @@ export namespace TodoTextInput {
   }
 }
 
-const emptyProps: TodoTextInput.Props = {
-  onSave: (_) => null,
-}
-
 export class TodoTextInput extends React.Component<TodoTextInput.Props, TodoTextInput.State> {
-
-  constructor(props?: TodoTextInput.Props, context?: any) {
-    super(props || emptyProps, context || {});
-    this.state = {
-      text: this.props.text || ''
-    };
+  constructor(props: TodoTextInput.Props, context?: any) {
+    super(props, context);
+    this.state = { text: this.props.text || '' };
     this.handleBlur = this.handleBlur.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -54,20 +47,25 @@ export class TodoTextInput extends React.Component<TodoTextInput.Props, TodoText
   }
 
   render() {
-    const classes = classNames({
-      [style.edit]: this.props.editing,
-      [style.new]: this.props.newTodo
-    }, style.normal);
+    const classes = classNames(
+      {
+        [style.edit]: this.props.editing,
+        [style.new]: this.props.newTodo
+      },
+      style.normal
+    );
 
     return (
-      <input className={classes}
+      <input
+        className={classes}
         type="text"
         autoFocus
         placeholder={this.props.placeholder}
         value={this.state.text}
         onBlur={this.handleBlur}
         onChange={this.handleChange}
-        onKeyDown={this.handleSubmit} />
+        onKeyDown={this.handleSubmit}
+      />
     );
   }
 }

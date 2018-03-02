@@ -1,47 +1,44 @@
 import * as React from 'react';
-import * as TodoActions from '../../actions/todos';
 import * as style from './style.css';
+import { TodoActions } from '../../actions/todos';
 import { connect } from 'react-redux';
 import { Footer } from '../Footer';
 import { TodoItem } from '../TodoItem';
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../../constants/filters';
+import { TodoModel } from '../../models/TodoModel';
 
-const TODO_FILTERS = {
-  [SHOW_ALL]: () => true,
-  [SHOW_ACTIVE]: todo => !todo.completed,
-  [SHOW_COMPLETED]: todo => todo.completed
+const TODO_FILTER_FNS = {
+  [TodoModel.Filter.SHOW_ALL]: () => true,
+  [TodoModel.Filter.SHOW_ACTIVE]: (todo) => !todo.completed,
+  [TodoModel.Filter.SHOW_COMPLETED]: (todo) => todo.completed
 };
 
 export namespace MainSection {
   export interface Props {
-    todos: TodoItemData[];
-    actions: typeof TodoActions;
+    todos: TodoModel[];
+    actions: TodoActions;
   }
 
   export interface State {
-    filter: TodoFilterType;
+    filter: TodoModel.Filter;
   }
 }
 
-const emptyProps: MainSection.Props = { todos: [], actions: TodoActions }
-
 export class MainSection extends React.Component<MainSection.Props, MainSection.State> {
-
-  constructor(props?: MainSection.Props, context?: any) {
-    super(props || emptyProps, context || {});
-    this.state = { filter: SHOW_ALL };
+  constructor(props: MainSection.Props, context?: any) {
+    super(props, context);
+    this.state = { filter: TodoModel.Filter.SHOW_ALL };
     this.handleClearCompleted = this.handleClearCompleted.bind(this);
     this.handleShow = this.handleShow.bind(this);
   }
 
   handleClearCompleted() {
-    const atLeastOneCompleted = this.props.todos.some(todo => todo.completed || false);
-    if (atLeastOneCompleted) {
+    const hasCompletedTodo = this.props.todos.some((todo) => todo.completed || false);
+    if (hasCompletedTodo) {
       this.props.actions.clearCompleted();
     }
   }
 
-  handleShow(filter: TodoFilterType) {
+  handleShow(filter: TodoModel.Filter) {
     this.setState({ filter });
   }
 
@@ -53,7 +50,8 @@ export class MainSection extends React.Component<MainSection.Props, MainSection.
           className={style.toggleAll}
           type="checkbox"
           checked={completedCount === todos.length}
-          onChange={actions.completeAll} />
+          onChange={actions.completeAll}
+        />
       );
     }
   }
@@ -65,11 +63,13 @@ export class MainSection extends React.Component<MainSection.Props, MainSection.
 
     if (todos.length) {
       return (
-        <Footer filter={filter}
+        <Footer
+          filter={filter}
           activeCount={activeCount}
           completedCount={completedCount}
           onClearCompleted={this.handleClearCompleted}
-          onShow={this.handleShow} />
+          onShow={this.handleShow}
+        />
       );
     }
   }
@@ -78,23 +78,22 @@ export class MainSection extends React.Component<MainSection.Props, MainSection.
     const { todos, actions } = this.props;
     const { filter } = this.state;
 
-    const filteredTodos = todos.filter(TODO_FILTERS[filter]);
-    const completedCount = todos.reduce((count, todo) => {
-      return todo.completed ? count + 1 : count;
-    }, 0);
+    const filteredTodos = todos.filter(TODO_FILTER_FNS[filter]);
+    const completedCount = todos.reduce((count, todo) => (todo.completed ? count + 1 : count), 0);
 
     return (
       <section className={style.main}>
         {this.renderToggleAll(completedCount)}
         <ul className={style.normal}>
-          {filteredTodos.map(todo =>
+          {filteredTodos.map((todo) => (
             <TodoItem
               key={todo.id}
               todo={todo}
               completeTodo={actions.completeTodo}
               deleteTodo={actions.deleteTodo}
-              editTodo={actions.editTodo} />
-          )}
+              editTodo={actions.editTodo}
+            />
+          ))}
         </ul>
         {this.renderFooter(completedCount)}
       </section>

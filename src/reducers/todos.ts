@@ -1,56 +1,53 @@
 import { handleActions } from 'redux-actions';
-import * as Actions from '../constants/actions';
+import { RootState } from './state';
+import { TodoActions } from '../actions/todos';
+import { TodoModel } from '../models';
 
-const initialState: TodoStoreState = [{
-  id: 0,
-  text: 'Use Redux',
-  completed: false
-}];
-
-export default handleActions<TodoStoreState, TodoItemData>({
-  [Actions.ADD_TODO]: (state, action) => {
-    return [{
-      id: state.reduce((maxId, todo) => Math.max(todo.id || 0, maxId), -1) + 1,
-      completed: false,
-      ...action.payload,
-    }, ...state];
-  },
-
-  [Actions.DELETE_TODO]: (state, action) => {
-    return state.filter(todo => todo.id !== action.payload);
-  },
-
-  [Actions.EDIT_TODO]: (state, action) => {
-    return state.map(todo => {
-      if (!todo || !action || !action.payload) {
-        return todo;
-      } else {
-        return (todo.id || 0) === action.payload.id
-          ? { ...todo, text: action.payload.text }
-          : todo;
-      }
-    });
-  },
-
-  [Actions.COMPLETE_TODO]: (state, action) => {
-    return state.map(todo => {
-      return todo.id === action.payload
-        ? { ...todo, completed: !todo.completed }
-        : todo;
-    });
-  },
-
-  [Actions.COMPLETE_ALL]: (state, action) => {
-    const areAllMarked = state.every(todo => todo.completed || false);
-    return state.map(todo => {
-      return {
-        ...todo,
-        completed: !areAllMarked
-      };
-    });
-  },
-
-  [Actions.CLEAR_COMPLETED]: (state, action) => {
-    return state.filter(todo => todo.completed === false);
+const initialState: RootState.TodoState = [
+  {
+    id: 0,
+    text: 'Use Redux',
+    completed: false
   }
-}, initialState);
+];
+
+export const todoReducer = handleActions<RootState.TodoState, TodoModel>(
+  {
+    [TodoActions.Type.ADD_TODO]: (state, action) => {
+      if (action.payload && action.payload.text) {
+        return [
+          {
+            id: state.reduce((maxId, todo) => Math.max(todo.id || 0, maxId), -1) + 1,
+            completed: false,
+            text: action.payload.text
+          },
+          ...state
+        ];
+      } else {
+        return state;
+      }
+    },
+    [TodoActions.Type.DELETE_TODO]: (state, action) => {
+      return state.filter((todo) => todo.id !== (action.payload as any));
+    },
+    [TodoActions.Type.EDIT_TODO]: (state, action) => {
+      return state.map((todo) => {
+        if (!todo || !action || !action.payload) {
+          return todo;
+        } else {
+          return (todo.id || 0) === action.payload.id ? { ...todo, text: action.payload.text } : todo;
+        }
+      });
+    },
+    [TodoActions.Type.COMPLETE_TODO]: (state, action) => {
+      return state.map((todo) => (todo.id === (action.payload as any) ? { ...todo, completed: true } : todo));
+    },
+    [TodoActions.Type.COMPLETE_ALL]: (state, action) => {
+      return state.map((todo) => ({ ...todo, completed: true }));
+    },
+    [TodoActions.Type.CLEAR_COMPLETED]: (state, action) => {
+      return state.filter((todo) => todo.completed === false);
+    }
+  },
+  initialState
+);
