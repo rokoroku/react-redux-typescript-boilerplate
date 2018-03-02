@@ -32,7 +32,7 @@ See also: [react-mobx-typescript-boilerplate](https://github.com/rokoroku/react-
 - [x] [React Hot Loader](https://github.com/gaearon/react-hot-loader)
 - [x] [ExtractText Plugin](https://github.com/webpack/extract-text-webpack-plugin)
 - [x] [HTML Webpack Plugin](https://github.com/ampedandwired/html-webpack-plugin)
-
+- [x] [Prettier](https://github.com/prettier/prettier)
 
 ## Setup
 
