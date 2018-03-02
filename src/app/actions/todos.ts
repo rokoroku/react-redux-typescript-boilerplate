@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import { TodoModel } from '../models';
+import { TodoModel } from 'app/models';
 
 export namespace TodoActions {
   export enum Type {

@@ -13,8 +13,8 @@ See also: [react-mobx-typescript-boilerplate](https://github.com/rokoroku/react-
 
 ## Contains
 
-- [x] [Typescript](https://www.typescriptlang.org/) 2.5
-- [x] [React](https://facebook.github.io/react/) 16.0
+- [x] [Typescript](https://www.typescriptlang.org/) 2.7
+- [x] [React](https://facebook.github.io/react/) 16.3
 - [x] [Redux](https://github.com/reactjs/redux) 3.7
 - [x] [React Router](https://github.com/ReactTraining/react-router) 4.2
 - [x] [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
@@ -22,10 +22,10 @@ See also: [react-mobx-typescript-boilerplate](https://github.com/rokoroku/react-
 
 ### Build tools
 
-- [x] [Webpack](https://webpack.github.io) 3
+- [x] [Webpack](https://webpack.github.io) 4
   - [x] [Tree Shaking](https://medium.com/@Rich_Harris/tree-shaking-versus-dead-code-elimination-d3765df85c80)
   - [x] [Webpack Dev Server](https://github.com/webpack/webpack-dev-server)
-- [x] [Awesome Typescript Loader](https://github.com/s-panferov/awesome-typescript-loader)
+- [x] [Typescript Loader](https://github.com/TypeStrong/ts-loader)
 - [x] [PostCSS Loader](https://github.com/postcss/postcss-loader)
   - [x] [CSS next](https://github.com/MoOx/postcss-cssnext)
   - [x] [CSS modules](https://github.com/css-modules/css-modules)

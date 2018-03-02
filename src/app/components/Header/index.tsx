@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { TodoTextInput } from '../TodoTextInput';
 import { Action } from 'redux-actions';
-import { TodoModel } from '../../models';
-import { TodoActions } from '../../actions/todos';
+import { TodoModel } from 'app/models';
+import { TodoActions } from 'app/actions/todos';
 
 export namespace Header {
   export interface Props {

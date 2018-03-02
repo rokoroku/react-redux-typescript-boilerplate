@@ -2,9 +2,9 @@ import * as React from 'react';
 import * as classNames from 'classnames';
 import * as style from './style.css';
 import { Action } from 'redux-actions';
-import { TodoActions } from '../../actions/todos';
+import { TodoModel } from 'app/models';
+import { TodoActions } from 'app/actions';
 import { TodoTextInput } from '../TodoTextInput';
-import { TodoModel } from '../../models';
 
 export namespace TodoItem {
   export interface Props {

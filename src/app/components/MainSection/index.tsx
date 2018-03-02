@@ -1,10 +1,10 @@
 import * as React from 'react';
 import * as style from './style.css';
-import { TodoActions } from '../../actions/todos';
+import { TodoActions } from 'app/actions/todos';
 import { connect } from 'react-redux';
 import { Footer } from '../Footer';
 import { TodoItem } from '../TodoItem';
-import { TodoModel } from '../../models/TodoModel';
+import { TodoModel } from 'app/models/TodoModel';
 
 const TODO_FILTER_FNS = {
   [TodoModel.Filter.SHOW_ALL]: () => true,

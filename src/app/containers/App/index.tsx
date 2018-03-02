@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { TodoActions } from '../../actions/todos';
 import * as style from './style.css';
-import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import { RouteComponentProps } from 'react-router';
-import { RootState } from '../../reducers';
-import { Header, MainSection } from '../../components';
-import { TodoModel } from '../../models';
-import { omit } from '../../utils';
+import { TodoActions } from 'app/actions';
+import { RootState } from 'app/reducers';
+import { TodoModel } from 'app/models';
+import { omit } from 'app/utils';
+import { Header, MainSection } from 'app/components';
 
 export namespace App {
   export interface Props extends RouteComponentProps<void> {
