@@ -52,6 +52,12 @@ $ npm start
 $ npm run build
 ```
 
+## Prettier
+
+```
+$ npm run prettier
+```
+
 # License
 
 MIT
