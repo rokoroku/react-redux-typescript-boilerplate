@@ -52,7 +52,13 @@ export class Footer extends React.Component<Footer.Props> {
   renderClearButton() {
     const { completedCount, onClearCompleted } = this.props;
     if (completedCount! > 0) {
-      return <button className={style.clearCompleted} onClick={onClearCompleted} children={'Clear completed'} />;
+      return (
+        <button
+          className={style.clearCompleted}
+          onClick={onClearCompleted}
+          children={'Clear completed'}
+        />
+      );
     }
   }
 

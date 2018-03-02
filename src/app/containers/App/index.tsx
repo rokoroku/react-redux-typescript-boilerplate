@@ -18,7 +18,9 @@ export namespace App {
 
 @connect(
   (state: RootState) => ({ todos: state.todos }),
-  (dispatch: Dispatch<RootState>) => ({ actions: bindActionCreators(omit(TodoActions, 'Type'), dispatch) })
+  (dispatch: Dispatch<RootState>) => ({
+    actions: bindActionCreators(omit(TodoActions, 'Type'), dispatch)
+  })
 )
 export class App extends React.Component<App.Props> {
   render() {

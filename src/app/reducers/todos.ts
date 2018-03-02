@@ -17,7 +17,7 @@ export const todoReducer = handleActions<RootState.TodoState, TodoModel>(
       if (action.payload && action.payload.text) {
         return [
           {
-            id: state.reduce((maxId, todo) => Math.max(todo.id || 1, maxId), 0) + 1,
+            id: state.reduce((max, todo) => Math.max(todo.id || 1, max), 0) + 1,
             completed: false,
             text: action.payload.text
           },
@@ -35,12 +35,16 @@ export const todoReducer = handleActions<RootState.TodoState, TodoModel>(
         if (!todo || !action || !action.payload) {
           return todo;
         } else {
-          return (todo.id || 0) === action.payload.id ? { ...todo, text: action.payload.text } : todo;
+          return (todo.id || 0) === action.payload.id
+            ? { ...todo, text: action.payload.text }
+            : todo;
         }
       });
     },
     [TodoActions.Type.COMPLETE_TODO]: (state, action) => {
-      return state.map((todo) => (todo.id === (action.payload as any) ? { ...todo, completed: true } : todo));
+      return state.map(
+        (todo) => (todo.id === (action.payload as any) ? { ...todo, completed: true } : todo)
+      );
     },
     [TodoActions.Type.COMPLETE_ALL]: (state, action) => {
       return state.map((todo) => ({ ...todo, completed: true }));

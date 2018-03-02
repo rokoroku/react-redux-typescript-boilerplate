@@ -135,7 +135,7 @@
   Can't use it globally since it destroys checkboxes in Firefox
 */
 
-@media screen and (-webkit-min-device-pixel-ratio:0) {
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
   .toggleAll,
   .normal li .toggle {
     background: none;
