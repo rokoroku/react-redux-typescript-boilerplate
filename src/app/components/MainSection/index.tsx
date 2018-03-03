@@ -6,7 +6,7 @@ import { Footer } from '../Footer';
 import { TodoItem } from '../TodoItem';
 import { TodoModel } from 'app/models/TodoModel';
 
-const TODO_FILTER_FNS = {
+const TODO_FILTER_FNS: Record<TodoModel.Filter, (todo: TodoModel) => boolean> = {
   [TodoModel.Filter.SHOW_ALL]: () => true,
   [TodoModel.Filter.SHOW_ACTIVE]: (todo) => !todo.completed,
   [TodoModel.Filter.SHOW_COMPLETED]: (todo) => todo.completed
