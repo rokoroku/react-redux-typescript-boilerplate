@@ -14,8 +14,8 @@ export namespace Footer {
     filter: TodoModel.Filter;
     activeCount?: number;
     completedCount?: number;
-    onShow: (filter: TodoModel.Filter) => any;
-    onClearCompleted: () => any;
+    onClickFilter: (filter: TodoModel.Filter) => any;
+    onClickClearCompleted: () => any;
   }
 }
 
@@ -37,25 +37,25 @@ export class Footer extends React.Component<Footer.Props> {
   }
 
   renderFilterLink(filter: TodoModel.Filter): JSX.Element {
-    const { filter: selectedFilter, onShow } = this.props;
+    const { filter: selectedFilter, onClickFilter } = this.props;
 
     return (
       <a
         className={classNames({ [style.selected]: filter === selectedFilter })}
         style={{ cursor: 'pointer' }}
-        onClick={() => onShow(filter)}
+        onClick={() => onClickFilter(filter)}
         children={FILTER_TITLES[filter]}
       />
     );
   }
 
   renderClearButton(): JSX.Element | void {
-    const { completedCount, onClearCompleted } = this.props;
+    const { completedCount, onClickClearCompleted } = this.props;
     if (completedCount! > 0) {
       return (
         <button
           className={style.clearCompleted}
-          onClick={onClearCompleted}
+          onClick={onClickClearCompleted}
           children={'Clear completed'}
         />
       );

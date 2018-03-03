@@ -1,5 +1,5 @@
 export { Footer } from './Footer';
 export { Header } from './Header';
-export { MainSection } from './MainSection';
+export { TodoList } from './TodoList';
 export { TodoItem } from './TodoItem';
 export { TodoTextInput } from './TodoTextInput';

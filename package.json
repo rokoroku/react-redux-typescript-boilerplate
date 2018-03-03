@@ -19,6 +19,7 @@
     "@types/react-dom": "16.0.4",
     "@types/react-redux": "5.0.15",
     "@types/react-router": "4.0.22",
+    "@types/react-router-redux": "^5.0.12",
     "@types/redux-actions": "2.2.4",
     "@types/webpack": "3.8.8",
     "@types/webpack-env": "1.13.5",
@@ -53,6 +54,7 @@
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
+    "react-router-redux": "^5.0.0-alpha.9",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1"
   }
