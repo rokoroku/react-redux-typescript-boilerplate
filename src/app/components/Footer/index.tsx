@@ -25,18 +25,18 @@ export class Footer extends React.Component<Footer.Props> {
     completedCount: 0
   };
 
-  renderTodoCount() {
+  renderTodoCount(): JSX.Element {
     const { activeCount } = this.props;
     const itemWord = activeCount === 1 ? 'item' : 'items';
 
     return (
       <span className={style.count}>
-        <strong>{activeCount || 'No'}</strong> {itemWord} left
+        <strong>{activeCount || 'No'}</strong> `{itemWord} left
       </span>
     );
   }
 
-  renderFilterLink(filter: TodoModel.Filter) {
+  renderFilterLink(filter: TodoModel.Filter): JSX.Element {
     const { filter: selectedFilter, onShow } = this.props;
 
     return (
@@ -49,7 +49,7 @@ export class Footer extends React.Component<Footer.Props> {
     );
   }
 
-  renderClearButton() {
+  renderClearButton(): JSX.Element | void {
     const { completedCount, onClearCompleted } = this.props;
     if (completedCount! > 0) {
       return (

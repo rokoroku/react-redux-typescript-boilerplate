@@ -31,18 +31,18 @@ export class MainSection extends React.Component<MainSection.Props, MainSection.
     this.handleShow = this.handleShow.bind(this);
   }
 
-  handleClearCompleted() {
+  handleClearCompleted(): void {
     const hasCompletedTodo = this.props.todos.some((todo) => todo.completed || false);
     if (hasCompletedTodo) {
       this.props.actions.clearCompleted();
     }
   }
 
-  handleShow(filter: TodoModel.Filter) {
+  handleShow(filter: TodoModel.Filter): void {
     this.setState({ filter });
   }
 
-  renderToggleAll(completedCount: number) {
+  renderToggleAll(completedCount: number): JSX.Element | void {
     const { todos, actions } = this.props;
     if (todos.length > 0) {
       return (
@@ -56,7 +56,7 @@ export class MainSection extends React.Component<MainSection.Props, MainSection.
     }
   }
 
-  renderFooter(completedCount: number) {
+  renderFooter(completedCount: number): JSX.Element | void {
     const { todos } = this.props;
     const { filter } = this.state;
     const activeCount = todos.length - completedCount;
