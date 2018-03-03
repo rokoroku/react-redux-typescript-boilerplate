@@ -1,20 +1,14 @@
 import * as React from 'react';
 import { TodoTextInput } from '../TodoTextInput';
-import { Action } from 'redux-actions';
-import { TodoModel } from 'app/models';
 import { TodoActions } from 'app/actions/todos';
 
 export namespace Header {
   export interface Props {
     addTodo: typeof TodoActions.addTodo;
   }
-
-  export interface State {
-    /* empty */
-  }
 }
 
-export class Header extends React.Component<Header.Props, Header.State> {
+export class Header extends React.Component<Header.Props> {
   constructor(props: Header.Props, context?: any) {
     super(props, context);
     this.handleSave = this.handleSave.bind(this);
