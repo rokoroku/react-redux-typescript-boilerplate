@@ -1,6 +1,8 @@
 # Frontend Boilerplate with React, Redux & TypeScript
 
-A bare minimum react-redux-webpack-typescript boilerplate with TodoMVC example.
+A bare minimum react-redux-webpack-typescript boilerplate with TodoMVC example. 
+
+[Live demo](https://rokoroku.github.io/react-redux-typescript-boilerplate)
 
 Note that this project does not include **Server-Side Rendering**,  **Testing Frameworks** and other stuffs that makes the package unnecessarily complicated.
 
