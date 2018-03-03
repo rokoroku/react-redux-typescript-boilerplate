@@ -31,7 +31,7 @@ export class Footer extends React.Component<Footer.Props> {
 
     return (
       <span className={style.count}>
-        <strong>{activeCount || 'No'}</strong> `{itemWord} left
+        <strong>{activeCount || 'No'}</strong> {itemWord} left
       </span>
     );
   }
