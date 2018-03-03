@@ -1,47 +1,43 @@
-const Webpack = require('webpack');
-const Path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+var webpack = require('webpack');
+var path = require('path');
 
-const isProduction = process.argv.indexOf('-p') >= 0;
-const outPath = Path.join(__dirname, './dist');
-const sourcePath = Path.join(__dirname, './src');
+// variables
+var isProduction = process.argv.indexOf('-p') >= 0;
+var sourcePath = path.join(__dirname, './src');
+var outPath = path.join(__dirname, './dist');
+
+// plugins
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 
 module.exports = {
   context: sourcePath,
   entry: {
-    main: './index.tsx',
-    vendor: [
-      'react',
-      'react-dom',
-      'react-redux',
-      'react-router',
-      'redux'
-    ]
+    app: './app/index.tsx'
   },
   output: {
     path: outPath,
-    publicPath: '/',
     filename: 'bundle.js',
+    chunkFilename: '[chunkhash].js',
+    publicPath: '/'
   },
   target: 'web',
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
     // Fix webpack's default behavior to not load packages with jsnext:main module
-    // https://github.com/Microsoft/TypeScript/issues/11677
-    mainFields: ['browser', 'main']
+    // (jsnext:main directs not usually distributable es6 format, but es6 sources)
+    mainFields: ['module', 'browser', 'main'],
+    alias: {
+      app: path.resolve(__dirname, 'src/app/')
+    }
   },
   module: {
-    loaders: [
+    rules: [
       // .ts, .tsx
       {
         test: /\.tsx?$/,
-        use: isProduction
-          ? 'awesome-typescript-loader?module=es6'
-          : [
-            'react-hot-loader/webpack',
-            'awesome-typescript-loader'
-          ]
+        use: isProduction ? 'ts-loader' : ['babel-loader?plugins=react-hot-loader/babel', 'ts-loader']
       },
       // css
       {
@@ -63,11 +59,13 @@ module.exports = {
               options: {
                 ident: 'postcss',
                 plugins: [
-                  require('postcss-import')({ addDependencyTo: Webpack }),
+                  require('postcss-import')({ addDependencyTo: webpack }),
                   require('postcss-url')(),
                   require('postcss-cssnext')(),
                   require('postcss-reporter')(),
-                  require('postcss-browser-reporter')({ disabled: isProduction }),
+                  require('postcss-browser-reporter')({
+                    disabled: isProduction
+                  })
                 ]
               }
             }
@@ -76,34 +74,51 @@ module.exports = {
       },
       // static assets
       { test: /\.html$/, use: 'html-loader' },
-      { test: /\.png$/, use: 'url-loader?limit=10000' },
-      { test: /\.jpg$/, use: 'file-loader' },
-    ],
+      { test: /\.(png|svg)$/, use: 'url-loader?limit=10000' },
+      { test: /\.(jpg|gif)$/, use: 'file-loader' }
+    ]
+  },
+  optimization: {
+    splitChunks: {
+      name: true,
+      cacheGroups: {
+        commons: {
+          chunks: 'initial',
+          minChunks: 2
+        },
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          chunks: 'all',
+          priority: -10
+        }
+      }
+    },
+    runtimeChunk: true
   },
   plugins: [
-    new Webpack.DefinePlugin({
-      'process.env.NODE_ENV': isProduction === true ? JSON.stringify('production') : JSON.stringify('development')
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development', // use 'development' unless process.env.NODE_ENV is defined
+      DEBUG: false
     }),
-    new Webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filename: 'vendor.bundle.js',
-      minChunks: Infinity
-    }),
-    new Webpack.optimize.AggressiveMergingPlugin(),
+    new WebpackCleanupPlugin(),
     new ExtractTextPlugin({
       filename: 'styles.css',
       disable: !isProduction
     }),
     new HtmlWebpackPlugin({
-      template: 'index.html'
+      template: 'assets/index.html'
     })
   ],
   devServer: {
     contentBase: sourcePath,
     hot: true,
+    inline: true,
+    historyApiFallback: {
+      disableDotRule: true
+    },
     stats: {
       warnings: false
-    },
+    }
   },
   node: {
     // workaround for webpack-dev-server issue
