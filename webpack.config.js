@@ -14,7 +14,7 @@ var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 module.exports = {
   context: sourcePath,
   entry: {
-    app: './app/index.tsx'
+    app: './main.tsx'
   },
   output: {
     path: outPath,
@@ -37,7 +37,9 @@ module.exports = {
       // .ts, .tsx
       {
         test: /\.tsx?$/,
-        use: isProduction ? 'ts-loader' : ['babel-loader?plugins=react-hot-loader/babel', 'ts-loader']
+        use: isProduction
+          ? 'ts-loader'
+          : ['babel-loader?plugins=react-hot-loader/babel', 'ts-loader']
       },
       // css
       {
@@ -116,9 +118,7 @@ module.exports = {
     historyApiFallback: {
       disableDotRule: true
     },
-    stats: {
-      warnings: false
-    }
+    stats: 'minimal'
   },
   node: {
     // workaround for webpack-dev-server issue

@@ -12,5 +12,14 @@ export function configureStore(history: History, initialState?: RootState): Stor
     middleware = composeWithDevTools(middleware);
   }
 
-  return createStore(rootReducer as any, initialState, middleware) as Store<RootState>;
+  const store = createStore(rootReducer as any, initialState, middleware) as Store<RootState>;
+
+  if (module.hot) {
+    module.hot.accept('app/reducers', () => {
+      const nextReducer = require('app/reducers');
+      store.replaceReducer(nextReducer);
+    });
+  }
+
+  return store;
 }
