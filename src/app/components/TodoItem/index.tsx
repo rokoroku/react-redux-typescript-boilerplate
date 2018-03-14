@@ -58,7 +58,7 @@ export class TodoItem extends React.Component<TodoItem.Props, TodoItem.State> {
             checked={todo.completed}
             onChange={() => todo.id && completeTodo(todo.id)}
           />
-          <label onDoubleClick={this.handleDoubleClick}>{todo.text}</label>
+          <label onDoubleClick={() => this.handleDoubleClick()}>{todo.text}</label>
           <button
             className={style.destroy}
             onClick={() => {
