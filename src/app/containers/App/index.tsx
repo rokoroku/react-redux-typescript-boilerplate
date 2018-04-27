@@ -33,7 +33,7 @@ export namespace App {
     const filter = FILTER_VALUES.find((value) => value === hash) || TodoModel.Filter.SHOW_ALL;
     return { todos: state.todos, filter };
   },
-  (dispatch: Dispatch<RootState>): Pick<App.Props, 'actions'> => ({
+  (dispatch: Dispatch): Pick<App.Props, 'actions'> => ({
     actions: bindActionCreators(omit(TodoActions, 'Type'), dispatch)
   })
 )

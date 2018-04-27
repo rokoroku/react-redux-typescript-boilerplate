@@ -3,7 +3,7 @@ import { RouterState } from 'react-router-redux';
 
 export interface RootState {
   todos: RootState.TodoState;
-  router: RouterState
+  router: RouterState;
 }
 
 export namespace RootState {
