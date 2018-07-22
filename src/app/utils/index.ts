@@ -6,6 +6,6 @@ export function omit<T extends object, K extends keyof T>(target: T, ...omitKeys
       }
       return res;
     },
-    {} as Omit<T, K>
+    {} as any
   );
 }
