@@ -10,7 +10,6 @@
     "removeComments": true,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
-    "keyofStringsOnly": true,
     "strict": true,
     "outDir": "build",
     "lib": ["es6", "es7", "dom"],
