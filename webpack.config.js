@@ -38,7 +38,7 @@ module.exports = {
       {
         test: /\.tsx?$/,
         use: [
-          isProduction && {
+          !isProduction && {
             loader: 'babel-loader',
             options: { plugins: ['react-hot-loader/babel'] }
           },
@@ -120,8 +120,11 @@ module.exports = {
     historyApiFallback: {
       disableDotRule: true
     },
-    stats: 'minimal'
+    stats: 'minimal',
+    clientLogLevel: 'warning'
   },
+  // https://webpack.js.org/configuration/devtool/
+  devtool: isProduction ? 'hidden-source-map' : 'cheap-module-eval-source-map',
   node: {
     // workaround for webpack-dev-server issue
     // https://github.com/webpack/webpack-dev-server/issues/60#issuecomment-103411179
