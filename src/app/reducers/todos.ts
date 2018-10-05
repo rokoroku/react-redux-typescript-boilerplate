@@ -43,7 +43,8 @@ export const todoReducer = handleActions<RootState.TodoState, TodoModel>(
     },
     [TodoActions.Type.COMPLETE_TODO]: (state, action) => {
       return state.map(
-        (todo) => (todo.id === (action.payload as any) ? { ...todo, completed: !todo.completed } : todo)
+        (todo) =>
+          todo.id === (action.payload as any) ? { ...todo, completed: !todo.completed } : todo
       );
     },
     [TodoActions.Type.COMPLETE_ALL]: (state, action) => {
