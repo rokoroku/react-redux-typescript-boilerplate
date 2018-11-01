@@ -1,9 +1,8 @@
 import { TodoModel } from 'app/models';
-import { RouterState } from 'react-router-redux';
 
 export interface RootState {
   todos: RootState.TodoState;
-  router: RouterState;
+  router?: any;
 }
 
 export namespace RootState {
