@@ -17,7 +17,6 @@ See also: [react-mobx-typescript-boilerplate](https://github.com/rokoroku/react-
 - [x] [React](https://facebook.github.io/react/) 16.5
 - [x] [Redux](https://github.com/reactjs/redux) 4
 - [x] [React Router](https://github.com/ReactTraining/react-router) 4.3
-- [x] [React Router Redux](https://github.com/reactjs/react-router-redux) 5
 - [x] [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
 - [x] [TodoMVC example](http://todomvc.com)
 
