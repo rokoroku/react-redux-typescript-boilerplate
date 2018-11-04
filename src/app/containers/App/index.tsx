@@ -28,7 +28,7 @@ export namespace App {
 }
 
 @connect(
-  (state: RootState , ownProps): Pick<App.Props, 'todos' | 'filter'> => {
+  (state: RootState, ownProps): Pick<App.Props, 'todos' | 'filter'> => {
     const hash = ownProps.location && ownProps.location.hash.replace('#', '');
     const filter = FILTER_VALUES.find((value) => value === hash) || TodoModel.Filter.SHOW_ALL;
     return { todos: state.todos, filter };

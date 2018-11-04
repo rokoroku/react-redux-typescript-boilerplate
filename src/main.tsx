@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createBrowserHistory } from 'history';
 import { configureStore } from 'app/store';
-import {Router} from "react-router";
+import { Router } from 'react-router';
 import { App } from './app';
 
 // prepare store
