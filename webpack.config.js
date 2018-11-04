@@ -4,7 +4,7 @@ var path = require('path');
 // variables
 var isProduction = process.argv.indexOf('-p') >= 0 || process.env.NODE_ENV === 'production';
 var sourcePath = path.join(__dirname, './src');
-var outPath = path.join(__dirname, './dist');
+var outPath = path.join(__dirname, './build');
 
 // plugins
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -19,8 +19,7 @@ module.exports = {
   output: {
     path: outPath,
     filename: 'bundle.js',
-    chunkFilename: '[chunkhash].js',
-    publicPath: '/'
+    chunkFilename: '[chunkhash].js'
   },
   target: 'web',
   resolve: {

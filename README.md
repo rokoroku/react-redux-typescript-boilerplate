@@ -32,9 +32,8 @@ See also: [react-mobx-typescript-boilerplate](https://github.com/rokoroku/react-
 - [x] [React Hot Loader](https://github.com/gaearon/react-hot-loader)
 - [x] [Mini CSS Extract Plugin](https://github.com/webpack-contrib/mini-css-extract-plugin)
 - [x] [HTML Webpack Plugin](https://github.com/ampedandwired/html-webpack-plugin)
-- [x] [Prettier](https://github.com/prettier/prettier)
 
-## Setup
+## Installation
 
 ```
 $ npm ci
@@ -52,10 +51,16 @@ $ npm start
 $ npm run build
 ```
 
-## Prettier
+## Deploy (to the [GitHub Pages](https://pages.github.com/))
 
 ```
-$ npm run format
+$ npm run deploy
+```
+
+## Format code (using [Prettier](https://github.com/prettier/prettier))
+
+```
+$ npm run prettier
 ```
 
 # License
