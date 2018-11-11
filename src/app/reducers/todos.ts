@@ -23,9 +23,8 @@ export const todoReducer = handleActions<RootState.TodoState, TodoModel>(
           },
           ...state
         ];
-      } else {
-        return state;
       }
+      return state;
     },
     [TodoActions.Type.DELETE_TODO]: (state, action) => {
       return state.filter((todo) => todo.id !== (action.payload as any));
@@ -34,17 +33,13 @@ export const todoReducer = handleActions<RootState.TodoState, TodoModel>(
       return state.map((todo) => {
         if (!todo || !action || !action.payload) {
           return todo;
-        } else {
-          return (todo.id || 0) === action.payload.id
-            ? { ...todo, text: action.payload.text }
-            : todo;
         }
+        return (todo.id || 0) === action.payload.id ? { ...todo, text: action.payload.text } : todo;
       });
     },
     [TodoActions.Type.COMPLETE_TODO]: (state, action) => {
-      return state.map(
-        (todo) =>
-          todo.id === (action.payload as any) ? { ...todo, completed: !todo.completed } : todo
+      return state.map((todo) =>
+        todo.id === (action.payload as any) ? { ...todo, completed: !todo.completed } : todo
       );
     },
     [TodoActions.Type.COMPLETE_ALL]: (state, action) => {
