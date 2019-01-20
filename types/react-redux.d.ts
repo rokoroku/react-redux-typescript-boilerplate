@@ -1,10 +1,11 @@
 import 'react-redux';
+import { ComponentType } from 'react';
 
 declare module 'react-redux' {
   // Add removed inferrable type to support connect as decorator
   // https://github.com/DefinitelyTyped/DefinitelyTyped/pull/16652
   export interface InferableComponentDecorator<TOwnProps> {
-    <T extends Component<TOwnProps>>(component: T): T;
+    <T extends ComponentType<TOwnProps>>(component: T): T;
   }
 
   // overload connect interface to return built-in ClassDecorator
