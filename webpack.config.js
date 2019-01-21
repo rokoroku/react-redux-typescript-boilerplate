@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var package = require('./package.json');
 
 // variables
 var isProduction = process.argv.indexOf('-p') >= 0 || process.env.NODE_ENV === 'production';
@@ -18,8 +19,8 @@ module.exports = {
   },
   output: {
     path: outPath,
-    filename: 'bundle.js',
-    chunkFilename: '[chunkhash].js'
+    filename: '[contenthash].js',
+    chunkFilename: '[name].[contenthash].js'
   },
   target: 'web',
   resolve: {
@@ -67,7 +68,7 @@ module.exports = {
                 require('postcss-url')(),
                 require('postcss-preset-env')({
                   /* use stage 2 features (defaults) */
-                  stage: 2,
+                  stage: 2
                 }),
                 require('postcss-reporter')(),
                 require('postcss-browser-reporter')({
@@ -81,7 +82,10 @@ module.exports = {
       // static assets
       { test: /\.html$/, use: 'html-loader' },
       { test: /\.(a?png|svg)$/, use: 'url-loader?limit=10000' },
-      { test: /\.(jpe?g|gif|bmp|mp3|mp4|ogg|wav|eot|ttf|woff|woff2)$/, use: 'file-loader' }
+      {
+        test: /\.(jpe?g|gif|bmp|mp3|mp4|ogg|wav|eot|ttf|woff|woff2)$/,
+        use: 'file-loader'
+      }
     ]
   },
   optimization: {
@@ -95,6 +99,7 @@ module.exports = {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
           chunks: 'all',
+          filename: 'vendor.[contenthash].js',
           priority: -10
         }
       }
@@ -112,7 +117,23 @@ module.exports = {
       disable: !isProduction
     }),
     new HtmlWebpackPlugin({
-      template: 'assets/index.html'
+      template: 'assets/index.html',
+      minify: {
+        minifyJS: true,
+        minifyCSS: true,
+        removeComments: true,
+        useShortDoctype: true,
+        collapseWhitespace: true,
+        collapseInlineTagWhitespace: true
+      },
+      append: {
+        head: `<script src="//cdn.polyfill.io/v2/polyfill.min.js"></script>`
+      },
+      meta: {
+        title: package.name,
+        description: package.description,
+        keywords: Array.isArray(package.keywords) ? package.keywords.join(',') : undefined
+      }
     })
   ],
   devServer: {

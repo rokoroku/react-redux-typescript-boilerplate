@@ -1,9 +1,16 @@
 {
-  "name": "typescript-react-redux-boilerplate",
+  "name": "react-redux-typescript-boilerplate",
   "version": "1.0.0",
   "private": true,
   "description": "A frontend boilerplate with React, Redux and Typescript",
-  "homepage": "https://rokoroku.github.io/typescript-react-redux-boilerplate",
+  "homepage": "https://rokoroku.github.io/react-redux-typescript-boilerplate",
+  "keywords": [
+    "react",
+    "redux",
+    "typescript",
+    "boilerplate",
+    "todomvc"
+  ],
   "main": "index.js",
   "scripts": {
     "predeploy": "npm run build",
