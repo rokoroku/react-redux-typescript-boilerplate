@@ -14,7 +14,7 @@ See also: [react-mobx-typescript-boilerplate](https://github.com/rokoroku/react-
 ## Contains
 
 - [x] [Typescript](https://www.typescriptlang.org/) 3
-- [x] [React](https://facebook.github.io/react/) 16.7
+- [x] [React](https://facebook.github.io/react/) 16.8
 - [x] [Redux](https://github.com/reactjs/redux) 4
 - [x] [React Router](https://github.com/ReactTraining/react-router) 4.3
 - [x] [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
