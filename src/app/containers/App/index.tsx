@@ -1,13 +1,13 @@
 import * as React from 'react';
-import * as style from './style.css';
+import * as style from './style.scss';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { RouteComponentProps } from 'react-router';
-import { TodoActions } from 'app/actions';
-import { RootState } from 'app/reducers';
-import { TodoModel } from 'app/models';
-import { omit } from 'app/utils';
-import { Header, TodoList, Footer } from 'app/components';
+import { TodoActions } from '../../actions';
+import { RootState } from '../../reducers';
+import { TodoModel } from '../../models';
+import { omit } from '../../utils';
+import { Header, TodoList, Footer } from '../../components';
 
 const FILTER_VALUES = (Object.keys(TodoModel.Filter) as (keyof typeof TodoModel.Filter)[]).map(
   (key) => TodoModel.Filter[key]
@@ -28,14 +28,8 @@ export namespace App {
 }
 
 @connect(
-  (state: RootState, ownProps): Pick<App.Props, 'todos' | 'filter'> => {
-    const hash = ownProps.location && ownProps.location.hash.replace('#', '');
-    const filter = FILTER_VALUES.find((value) => value === hash) || TodoModel.Filter.SHOW_ALL;
-    return { todos: state.todos, filter };
-  },
-  (dispatch: Dispatch): Pick<App.Props, 'actions'> => ({
-    actions: bindActionCreators(omit(TodoActions, 'Type'), dispatch)
-  })
+  mapStateToProps,
+  mapDispatchToProps
 )
 export class App extends React.Component<App.Props> {
   static defaultProps: Partial<App.Props> = {
@@ -78,5 +72,18 @@ export class App extends React.Component<App.Props> {
         />
       </div>
     );
+  }
+}
+
+export function mapStateToProps(state: RootState, props: App.Props) {
+  const hash = props.location && props.location.hash.replace('#', '');
+  const filter = FILTER_VALUES.find((value) => value === hash) || TodoModel.Filter.SHOW_ALL;
+
+  return { todos: state.todos, filter };
+}
+
+export function mapDispatchToProps(dispatch: Dispatch) {
+  return {
+    actions: bindActionCreators(omit(TodoActions, 'Type'), dispatch)
   }
 }

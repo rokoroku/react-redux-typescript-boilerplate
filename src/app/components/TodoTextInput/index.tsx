@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
-import * as style from './style.css';
+import * as style from './style.scss';
 
 export namespace TodoTextInput {
   export interface Props {

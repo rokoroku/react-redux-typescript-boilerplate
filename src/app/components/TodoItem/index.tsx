@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
-import * as style from './style.css';
-import { TodoModel } from 'app/models';
-import { TodoActions } from 'app/actions';
+import * as style from './style.scss';
+import { TodoModel } from '../../models';
+import { TodoActions } from '../../actions';
 import { TodoTextInput } from '../TodoTextInput';
 
 export namespace TodoItem {
