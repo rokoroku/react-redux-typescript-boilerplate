@@ -1,6 +1,6 @@
-import * as React from 'react';
-import * as style from './style.css';
-import * as classNames from 'classnames';
+import React from 'react';
+import style from './style.css';
+import classNames from 'classnames';
 import { TodoModel } from 'app/models';
 
 export const FILTER_TITLES = {
@@ -19,25 +19,24 @@ export namespace Footer {
   }
 }
 
-export class Footer extends React.Component<Footer.Props> {
-  static defaultProps: Partial<Footer.Props> = {
-    activeCount: 0,
-    completedCount: 0
-  };
-
-  renderTodoCount(): JSX.Element {
-    const { activeCount } = this.props;
-    const itemWord = activeCount === 1 ? 'item' : 'items';
+export const Footer = ({
+  activeCount,
+  completedCount,
+  onClickFilter,
+  onClickClearCompleted
+}: Footer.Props) => {
+  const renderTodoCount = (): JSX.Element => {
+    const itemWord = activeCount === 1 ? ' item' : 'items';
 
     return (
       <span className={style.count}>
         <strong>{activeCount || 'No'}</strong> {itemWord} left
       </span>
     );
-  }
+  };
 
-  renderFilterLink(filter: TodoModel.Filter): JSX.Element {
-    const { filter: selectedFilter, onClickFilter } = this.props;
+  const renderFilterLink = (filter: TodoModel.Filter): JSX.Element => {
+    const selectedFilter = filter;
 
     return (
       <a
@@ -47,10 +46,9 @@ export class Footer extends React.Component<Footer.Props> {
         children={FILTER_TITLES[filter]}
       />
     );
-  }
+  };
 
-  renderClearButton(): JSX.Element | void {
-    const { completedCount, onClickClearCompleted } = this.props;
+  const renderClearButton = (): JSX.Element | void => {
     if (completedCount! > 0) {
       return (
         <button
@@ -60,19 +58,17 @@ export class Footer extends React.Component<Footer.Props> {
         />
       );
     }
-  }
+  };
 
-  render() {
-    return (
-      <footer className={style.normal}>
-        {this.renderTodoCount()}
-        <ul className={style.filters}>
-          {(Object.keys(TodoModel.Filter) as (keyof typeof TodoModel.Filter)[]).map((key) => (
-            <li key={key} children={this.renderFilterLink(TodoModel.Filter[key])} />
-          ))}
-        </ul>
-        {this.renderClearButton()}
-      </footer>
-    );
-  }
-}
+  return (
+    <footer className={style.normal}>
+      {renderTodoCount()}
+      <ul className={style.filters}>
+        {(Object.keys(TodoModel.Filter) as (keyof typeof TodoModel.Filter)[]).map((key) => (
+          <li key={key} children={renderFilterLink(TodoModel.Filter[key])} />
+        ))}
+      </ul>
+      {renderClearButton()}
+    </footer>
+  );
+};
