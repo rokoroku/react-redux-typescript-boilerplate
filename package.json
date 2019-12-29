@@ -64,7 +64,7 @@
     "classnames": "^2.2.6",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-redux": "^6.0.1",
+    "react-redux": "^7.1.1",
     "react-router": "^4.3.1",
     "redux": "^4.0.5",
     "redux-actions": "^2.6.5"
