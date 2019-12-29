@@ -8,15 +8,15 @@ export namespace Header {
   }
 }
 
-export const Header = ({ addTodo }: Header.Props) => {
+export const Header = ({ addTodo }: Header.Props): JSX.Element => {
   const handleSave = (text: string) => {
-    if(text.length) addTodo({ text })
-  }
+    if (text.length) addTodo({ text });
+  };
 
   return (
     <header>
       <h1>Todos</h1>
       <TodoTextInput newTodo onSave={handleSave} placeholder="What needs to be done?" />
     </header>
-  )
-}
+  );
+};

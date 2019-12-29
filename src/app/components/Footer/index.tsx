@@ -24,7 +24,7 @@ export const Footer = ({
   completedCount,
   onClickFilter,
   onClickClearCompleted
-}: Footer.Props) => {
+}: Footer.Props): JSX.Element => {
   const renderTodoCount = (): JSX.Element => {
     const itemWord = activeCount === 1 ? ' item' : 'items';
 

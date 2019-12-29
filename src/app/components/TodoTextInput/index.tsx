@@ -4,38 +4,41 @@ import style from './style.css';
 
 export namespace TodoTextInput {
   export interface Props {
-    placeholder?: string
-    newTodo?: boolean
-    onSave: (text: string) => void
+    placeholder?: string;
+    newTodo?: boolean;
+    onSave: (text: string) => void;
   }
 
   export interface State {
-    text: string
+    text: string;
   }
 }
 
-export const TodoTextInput = ({placeholder, newTodo, onSave}: TodoTextInput.Props) => {
-
-  const [inputText, setInputText] = useState('')
+export const TodoTextInput = ({
+  placeholder,
+  newTodo,
+  onSave
+}: TodoTextInput.Props): JSX.Element => {
+  const [inputText, setInputText] = useState('');
 
   const handleSubmit = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const text = event.currentTarget.value.trim();
     if (event.which === 13) {
       onSave(text);
-      setInputText('')
+      setInputText('');
     }
-  }
+  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputText(event.target.value)
-  }
+    setInputText(event.target.value);
+  };
 
   const handleBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
     const text = event.currentTarget.value.trim();
-    if(!newTodo) {
+    if (!newTodo) {
       onSave(text);
     }
-  }
+  };
 
   const classes = classNames(
     {
@@ -57,4 +60,4 @@ export const TodoTextInput = ({placeholder, newTodo, onSave}: TodoTextInput.Prop
       onKeyDown={handleSubmit}
     />
   );
-}
+};
