@@ -54,12 +54,6 @@ $ npm run build
 $ npm run deploy
 ```
 
-## Format code (using [Prettier](https://github.com/prettier/prettier))
-
-```
-$ npm run prettier
-```
-
 # License
 
 MIT
