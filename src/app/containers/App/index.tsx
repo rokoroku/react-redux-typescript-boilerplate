@@ -9,16 +9,6 @@ import { TodoModel } from 'app/models';
 import { omit } from 'app/utils';
 import { Header, TodoList, Footer } from 'app/components';
 
-const FILTER_VALUES = (Object.keys(TodoModel.Filter) as (keyof typeof TodoModel.Filter)[]).map(
-  (key) => TodoModel.Filter[key]
-);
-
-const FILTER_FUNCTIONS: Record<TodoModel.Filter, (todo: TodoModel) => boolean> = {
-  [TodoModel.Filter.SHOW_ALL]: () => true,
-  [TodoModel.Filter.SHOW_ACTIVE]: (todo) => !todo.completed,
-  [TodoModel.Filter.SHOW_COMPLETED]: (todo) => todo.completed
-};
-
 export namespace App {
   export interface Props extends RouteComponentProps<void> {
     todos: RootState.TodoState;
@@ -29,6 +19,16 @@ export namespace App {
 
 export const App = ({ actions, history, location }: App.Props) => {
   const dispatch = useDispatch();
+
+  const FILTER_VALUES = (Object.keys(TodoModel.Filter) as (keyof typeof TodoModel.Filter)[]).map(
+    (key) => TodoModel.Filter[key]
+  );
+
+  const FILTER_FUNCTIONS: Record<TodoModel.Filter, (todo: TodoModel) => boolean> = {
+    [TodoModel.Filter.SHOW_ALL]: () => true,
+    [TodoModel.Filter.SHOW_ACTIVE]: (todo) => !todo.completed,
+    [TodoModel.Filter.SHOW_COMPLETED]: (todo) => todo.completed
+  };
 
   const { todos, filter } = useSelector((state: RootState) => {
     const hash = location && location.hash.replace('#', '');
