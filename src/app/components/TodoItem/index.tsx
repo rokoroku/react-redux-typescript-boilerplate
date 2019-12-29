@@ -44,8 +44,6 @@ export class TodoItem extends React.Component<TodoItem.Props, TodoItem.State> {
     if (this.state.editing) {
       element = (
         <TodoTextInput
-          text={todo.text}
-          editing={this.state.editing}
           onSave={(text) => todo.id && this.handleSave(todo.id, text)}
         />
       );

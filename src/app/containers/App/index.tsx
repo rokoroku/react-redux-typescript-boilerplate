@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as style from './style.css';
+import React from 'react';
+import style from './style.css';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { RouteComponentProps } from 'react-router';
