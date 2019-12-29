@@ -1,6 +1,6 @@
 {
   "name": "react-hooks-redux-typescript-boilerplate",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "description": "A frontend boilerplate with React hooks, Redux and Typescript",
   "homepage": "https://github.com/WToa/react-redux-typescript-boilerplate",
