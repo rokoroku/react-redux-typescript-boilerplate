@@ -12,37 +12,42 @@ export namespace TodoItem {
     deleteTodo: typeof TodoActions.deleteTodo;
     completeTodo: typeof TodoActions.completeTodo;
   }
-
-  export interface State {
-    editing: boolean;
-  }
 }
 
 export const TodoItem = ({ todo, editTodo, deleteTodo, completeTodo }: TodoItem.Props) => {
   const [editing, setEditing] = useState(false);
 
-  const handleDoubleClick = () => {
+  const handleDoubleClick = React.useCallback(() => {
     setEditing(true);
-  };
+  }, [setEditing]);
 
-  const handleSave = (id: number, text: string) => {
-    if (text.length === 0) {
-      deleteTodo(id);
-    } else {
-      editTodo({ id, text });
-    }
-    setEditing(false);
-  };
+  const handleSave = React.useCallback(
+    (id: number, text: string) => {
+      if (text.length === 0) {
+        deleteTodo(id);
+      } else {
+        editTodo({ id, text });
+      }
+      setEditing(false);
+    },
+    [editTodo, deleteTodo, setEditing]
+  );
 
-  const renderElement = (): JSX.Element => {
-    if (editing) {
-      return <TodoTextInput onSave={(text) => todo.id && handleSave(todo.id, text)} />;
-    } else {
-      return (
+  const classes = classNames({
+    [style.completed]: todo.completed,
+    [style.editing]: editing,
+    [style.normal]: !editing
+  });
+
+  return (
+    <li className={classes}>
+      {editing ? (
+        <TodoTextInput onSave={(text) => todo.id && handleSave(todo.id, text)} />
+      ) : (
         <div className={style.view}>
           <input
-            className={style.toggle}
             type="checkbox"
+            className={style.toggle}
             checked={todo.completed}
             onChange={() => todo.id && completeTodo(todo.id)}
           />
@@ -54,15 +59,7 @@ export const TodoItem = ({ todo, editTodo, deleteTodo, completeTodo }: TodoItem.
             }}
           />
         </div>
-      );
-    }
-  };
-
-  const classes = classNames({
-    [style.completed]: todo.completed,
-    [style.editing]: editing,
-    [style.normal]: !editing
-  });
-
-  return <li className={classes}>{renderElement()}</li>;
+      )}
+    </li>
+  );
 };

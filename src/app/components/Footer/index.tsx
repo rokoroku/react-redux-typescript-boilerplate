@@ -20,45 +20,40 @@ export namespace Footer {
 }
 
 export const Footer = ({
+  filter,
   activeCount,
   completedCount,
   onClickFilter,
   onClickClearCompleted
 }: Footer.Props): JSX.Element => {
-  const renderTodoCount = (): JSX.Element => {
+  const renderTodoCount = React.useCallback((): JSX.Element => {
     const itemWord = activeCount === 1 ? ' item' : 'items';
-
     return (
       <span className={style.count}>
         <strong>{activeCount || 'No'}</strong> {itemWord} left
       </span>
     );
-  };
+  }, [activeCount]);
 
-  const renderFilterLink = (filter: TodoModel.Filter): JSX.Element => {
-    const selectedFilter = filter;
-
-    return (
-      <a
-        className={classNames({ [style.selected]: filter === selectedFilter })}
-        style={{ cursor: 'pointer' }}
-        onClick={() => onClickFilter(filter)}
-        children={FILTER_TITLES[filter]}
-      />
-    );
-  };
-
-  const renderClearButton = (): JSX.Element | void => {
-    if (completedCount! > 0) {
+  const renderFilterLink = React.useCallback(
+    (selectedFilter: TodoModel.Filter): JSX.Element => {
       return (
-        <button
-          className={style.clearCompleted}
-          onClick={onClickClearCompleted}
-          children={'Clear completed'}
+        <a
+          className={classNames({ [style.selected]: filter === selectedFilter })}
+          style={{ cursor: 'pointer' }}
+          onClick={() => onClickFilter(selectedFilter)}
+          children={FILTER_TITLES[selectedFilter]}
         />
       );
+    },
+    [filter, onClickFilter]
+  );
+
+  const renderClearButton = React.useCallback((): JSX.Element | void => {
+    if (completedCount! > 0) {
+      return <button className={style.clearCompleted} onClick={onClickClearCompleted} children={'Clear completed'} />;
     }
-  };
+  }, [completedCount]);
 
   return (
     <footer className={style.normal}>

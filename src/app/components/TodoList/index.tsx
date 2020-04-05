@@ -12,23 +12,12 @@ export namespace TodoList {
 }
 
 export const TodoList = ({ todos, actions }: TodoList.Props): JSX.Element => {
-  const renderToggleAll = (): JSX.Element | void => {
-    if (todos.length > 0) {
-      const hasIncompleted = todos.some((todo) => !todo.completed);
-      return (
-        <input
-          className={style.toggleAll}
-          type="checkbox"
-          checked={hasIncompleted}
-          onChange={actions.completeAll}
-        />
-      );
-    }
-  };
-
+  const hasIncompleted = React.useMemo(() => todos.some((todo) => !todo.completed), []);
   return (
     <section className={style.main}>
-      {renderToggleAll()}
+      {hasIncompleted && (
+        <input className={style.toggleAll} type="checkbox" checked={hasIncompleted} onChange={actions.completeAll} />
+      )}
       <ul className={style.normal}>
         {todos.map((todo) => (
           <TodoItem

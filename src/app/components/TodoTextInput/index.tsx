@@ -14,31 +14,36 @@ export namespace TodoTextInput {
   }
 }
 
-export const TodoTextInput = ({
-  placeholder,
-  newTodo,
-  onSave
-}: TodoTextInput.Props): JSX.Element => {
+export const TodoTextInput = ({ placeholder, newTodo, onSave }: TodoTextInput.Props): JSX.Element => {
   const [inputText, setInputText] = useState('');
 
-  const handleSubmit = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    const text = event.currentTarget.value.trim();
-    if (event.which === 13) {
-      onSave(text);
-      setInputText('');
-    }
-  };
+  const handleSubmit = React.useCallback(
+    (event: React.KeyboardEvent<HTMLInputElement>) => {
+      const text = event.currentTarget.value.trim();
+      if (event.which === 13) {
+        onSave(text);
+        setInputText('');
+      }
+    },
+    [onSave, setInputText]
+  );
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputText(event.target.value);
-  };
+  const handleChange = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      setInputText(event.target.value);
+    },
+    [setInputText]
+  );
 
-  const handleBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const text = event.currentTarget.value.trim();
-    if (!newTodo) {
-      onSave(text);
-    }
-  };
+  const handleBlur = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const text = event.currentTarget.value.trim();
+      if (!newTodo) {
+        onSave(text);
+      }
+    },
+    [onSave]
+  );
 
   const classes = classNames(
     {

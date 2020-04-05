@@ -9,9 +9,12 @@ export namespace Header {
 }
 
 export const Header = ({ addTodo }: Header.Props): JSX.Element => {
-  const handleSave = (text: string) => {
-    if (text.length) addTodo({ text });
-  };
+  const handleSave = React.useCallback(
+    (text: string) => {
+      if (text.length) addTodo({ text });
+    },
+    [addTodo]
+  );
 
   return (
     <header>
