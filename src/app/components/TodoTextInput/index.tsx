@@ -1,13 +1,11 @@
-import * as React from 'react';
-import * as classNames from 'classnames';
-import * as style from './style.css';
+import React, { useState } from 'react';
+import classNames from 'classnames';
+import style from './style.css';
 
 export namespace TodoTextInput {
   export interface Props {
-    text?: string;
     placeholder?: string;
     newTodo?: boolean;
-    editing?: boolean;
     onSave: (text: string) => void;
   }
 
@@ -16,56 +14,50 @@ export namespace TodoTextInput {
   }
 }
 
-export class TodoTextInput extends React.Component<TodoTextInput.Props, TodoTextInput.State> {
-  constructor(props: TodoTextInput.Props, context?: any) {
-    super(props, context);
-    this.state = { text: this.props.text || '' };
-    this.handleBlur = this.handleBlur.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
+export const TodoTextInput = ({
+  placeholder,
+  newTodo,
+  onSave
+}: TodoTextInput.Props): JSX.Element => {
+  const [inputText, setInputText] = useState('');
 
-  handleSubmit(event: React.KeyboardEvent<HTMLInputElement>) {
+  const handleSubmit = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const text = event.currentTarget.value.trim();
     if (event.which === 13) {
-      this.props.onSave(text);
-      if (this.props.newTodo) {
-        this.setState({ text: '' });
-      }
+      onSave(text);
+      setInputText('');
     }
-  }
+  };
 
-  handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    this.setState({ text: event.target.value });
-  }
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputText(event.target.value);
+  };
 
-  handleBlur(event: React.FocusEvent<HTMLInputElement>) {
-    const text = event.target.value.trim();
-    if (!this.props.newTodo) {
-      this.props.onSave(text);
+  const handleBlur = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const text = event.currentTarget.value.trim();
+    if (!newTodo) {
+      onSave(text);
     }
-  }
+  };
 
-  render() {
-    const classes = classNames(
-      {
-        [style.edit]: this.props.editing,
-        [style.new]: this.props.newTodo
-      },
-      style.normal
-    );
+  const classes = classNames(
+    {
+      [style.edit]: !newTodo,
+      [style.new]: newTodo
+    },
+    style.normal
+  );
 
-    return (
-      <input
-        className={classes}
-        type="text"
-        autoFocus
-        placeholder={this.props.placeholder}
-        value={this.state.text}
-        onBlur={this.handleBlur}
-        onChange={this.handleChange}
-        onKeyDown={this.handleSubmit}
-      />
-    );
-  }
-}
+  return (
+    <input
+      className={classes}
+      type="text"
+      autoFocus
+      placeholder={placeholder}
+      value={inputText}
+      onChange={handleChange}
+      onBlur={handleBlur}
+      onKeyDown={handleSubmit}
+    />
+  );
+};
