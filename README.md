@@ -9,7 +9,7 @@ Ideal for creating React apps from the scratch.
 
 ## Contains
 
-- [x] [Typescript](https://www.typescriptlang.org/) 3
+- [x] [Typescript](https://www.typescriptlang.org/) 3.8
 - [x] [React](https://facebook.github.io/react/) 16.12
 - [x] [Redux](https://github.com/reactjs/redux) 4
 - [x] [Redux Thunk](https://github.com/reduxjs/redux-thunk) 2.3
