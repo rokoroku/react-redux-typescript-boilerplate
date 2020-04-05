@@ -10,7 +10,7 @@ var outPath = path.join(__dirname, './build');
 // plugins
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
+var { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   context: sourcePath,
@@ -53,10 +53,11 @@ module.exports = {
           {
             loader: 'css-loader',
             query: {
-              modules: true,
               sourceMap: !isProduction,
               importLoaders: 1,
-              localIdentName: isProduction ? '[hash:base64:5]' : '[local]__[hash:base64:5]'
+              modules: {
+                localIdentName: isProduction ? '[hash:base64:5]' : '[local]__[hash:base64:5]'
+              }
             }
           },
           {

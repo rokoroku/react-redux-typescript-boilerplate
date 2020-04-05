@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+import { Dispatch, bindActionCreators } from 'redux';
 import { createAction } from 'redux-actions';
 import { TodoModel } from 'app/models';
 
@@ -20,3 +22,7 @@ export namespace TodoActions {
 }
 
 export type TodoActions = Omit<typeof TodoActions, 'Type'>;
+export const useTodoActions = (dispatch: Dispatch) => {
+  const { Type, ...actions } = TodoActions;
+  return useMemo(() => bindActionCreators(actions as any, dispatch), [dispatch]) as TodoActions;
+};
