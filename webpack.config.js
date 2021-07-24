@@ -13,14 +13,15 @@ var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
+  mode: isProduction ? "production" : "development",
   context: sourcePath,
   entry: {
     app: './main.tsx'
   },
   output: {
     path: outPath,
-    filename: isProduction ? '[contenthash].js' : '[hash].js',
-    chunkFilename: isProduction ? '[name].[contenthash].js' : '[name].[hash].js'
+    filename: '[contenthash].js',
+    chunkFilename: '[name].[contenthash].js'
   },
   target: 'web',
   resolve: {
@@ -30,6 +31,9 @@ module.exports = {
     mainFields: ['module', 'browser', 'main'],
     alias: {
       app: path.resolve(__dirname, 'src/app/')
+    },
+    fallback: {
+      fs: false
     }
   },
   module: {
@@ -52,7 +56,7 @@ module.exports = {
           isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
           {
             loader: 'css-loader',
-            query: {
+            options: {
               sourceMap: !isProduction,
               importLoaders: 1,
               modules: {
@@ -63,44 +67,43 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              ident: 'postcss',
-              plugins: [
-                require('postcss-import')({ addDependencyTo: webpack }),
-                require('postcss-url')(),
-                require('postcss-preset-env')({
-                  /* use stage 2 features (defaults) */
-                  stage: 2
-                }),
-                require('postcss-reporter')(),
-                require('postcss-browser-reporter')({
-                  disabled: isProduction
-                })
-              ]
+              postcssOptions: {
+                ident: 'postcss',
+                plugins: [
+                  require('postcss-import')({ addDependencyTo: webpack }),
+                  require('postcss-url')(),
+                  require('postcss-preset-env')({
+                    /* use stage 2 features (defaults) */
+                    stage: 2
+                  }),
+                  require('postcss-reporter')(),
+                  require('postcss-browser-reporter')({
+                    disabled: isProduction
+                  })
+                ]
+              },
             }
           }
         ]
       },
       // static assets
-      { test: /\.html$/, use: 'html-loader' },
-      { test: /\.(a?png|svg)$/, use: 'url-loader?limit=10000' },
-      {
-        test: /\.(jpe?g|gif|bmp|mp3|mp4|ogg|wav|eot|ttf|woff|woff2)$/,
-        use: 'file-loader'
-      }
+      { test: /\.html$/, use: 'html-loader'},
+      { test: /\.(a?png|svg)$/, type: 'asset/inline' },
+      { test: /\.(jpe?g|gif|bmp|mp3|mp4|ogg|wav|eot|ttf|woff|woff2)$/, type: 'asset/resource' }
     ]
   },
   optimization: {
     splitChunks: {
-      name: true,
+      name: false,
       cacheGroups: {
         commons: {
           chunks: 'initial',
           minChunks: 2
         },
-        vendors: {
+        defaultVendors: {
           test: /[\\/]node_modules[\\/]/,
           chunks: 'all',
-          filename: isProduction ? 'vendor.[contenthash].js' : 'vendor.[hash].js',
+          filename: 'vendor.[contenthash].js',
           priority: -10
         }
       }
@@ -113,10 +116,9 @@ module.exports = {
       DEBUG: false
     }),
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      filename: '[hash].css',
-      disable: !isProduction
-    }),
+    isProduction ? new MiniCssExtractPlugin({
+      filename: '[contenthash].css'
+    }) : false,
     new HtmlWebpackPlugin({
       template: 'assets/index.html',
       minify: {
@@ -136,7 +138,7 @@ module.exports = {
         keywords: Array.isArray(package.keywords) ? package.keywords.join(',') : undefined
       }
     })
-  ],
+  ].filter(Boolean),
   devServer: {
     contentBase: sourcePath,
     hot: true,
@@ -148,11 +150,5 @@ module.exports = {
     clientLogLevel: 'warning'
   },
   // https://webpack.js.org/configuration/devtool/
-  devtool: isProduction ? 'hidden-source-map' : 'cheap-module-eval-source-map',
-  node: {
-    // workaround for webpack-dev-server issue
-    // https://github.com/webpack/webpack-dev-server/issues/60#issuecomment-103411179
-    fs: 'empty',
-    net: 'empty'
-  }
+  devtool: isProduction ? 'hidden-source-map' : 'eval-cheap-module-source-map'
 };
