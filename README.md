@@ -9,17 +9,17 @@ Ideal for creating React apps from the scratch.
 
 ## Contains
 
-- [x] [Typescript](https://www.typescriptlang.org/) 3.8
-- [x] [React](https://facebook.github.io/react/) 16.12
+- [x] [Typescript](https://www.typescriptlang.org/) 4.3
+- [x] [React](https://facebook.github.io/react/) 17
 - [x] [Redux](https://github.com/reactjs/redux) 4
 - [x] [Redux Thunk](https://github.com/reduxjs/redux-thunk) 2.3
-- [x] [React Router](https://github.com/ReactTraining/react-router) 5.1
+- [x] [React Router](https://github.com/ReactTraining/react-router) 5.2
 - [x] [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
 - [x] [TodoMVC example](http://todomvc.com)
 
 ### Build tools
 
-- [x] [Webpack](https://webpack.github.io) 4
+- [x] [Webpack](https://webpack.github.io) 5
   - [x] [Tree Shaking](https://medium.com/@Rich_Harris/tree-shaking-versus-dead-code-elimination-d3765df85c80)
   - [x] [Webpack Dev Server](https://github.com/webpack/webpack-dev-server)
 - [x] [Typescript Loader](https://github.com/TypeStrong/ts-loader)
