@@ -2,7 +2,7 @@
 
 // for style loader
 declare module '*.css' {
-  const styles: any;
+  const styles: any | null;
   export = styles;
 }
 
